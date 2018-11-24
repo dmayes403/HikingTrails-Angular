@@ -1,0 +1,149 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-primary: (
+    50: #c7b9ae,
+    100: #bcac9f,
+    200: #b29f8f,
+    300: #a89280,
+    400: #9d8571,
+    500: #917864,
+    600: #826b5a,
+    700: #735f4f,
+    800: #645345,
+    900: #55463a,
+    A100: #d1c6bd,
+    A200: #dcd3cc,
+    A400: #e6e0db,
+    A700: #463a30,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$my-accent: (
+    50: #a87c47,
+    100: #b68852,
+    200: #be9564,
+    300: #c5a176,
+    400: #cdad88,
+    500: #d4ba9a,
+    600: #e4d2be,
+    700: #ebdfd0,
+    800: #f3ebe2,
+    900: #faf7f4,
+    A100: #e4d2be,
+    A200: #DCC6AC,
+    A400: #d4ba9a,
+    A700: #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$dark-primary: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: white,
+    600: #f2f2f2,
+    700: #e6e6e6,
+    800: #d9d9d9,
+    900: #cccccc,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #bfbfbf,
+        contrast: (
+            50: #ffffff,
+            100: #ffffff,
+            200: #ffffff,
+            300: #ffffff,
+            400: #ffffff,
+            500: white,
+            600: #f2f2f2,
+            700: #e6e6e6,
+            800: #d9d9d9,
+            900: #cccccc,
+            A100: #ffffff,
+            A200: #ffffff,
+            A400: #ffffff,
+            A700: #bfbfbf
+        )
+);
+
+$dark-accent: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400: #ffffff,
+    500: white,
+    600: #f2f2f2,
+    700: #e6e6e6,
+    800: #d9d9d9,
+    900: #cccccc,
+    A100: #ffffff,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #bfbfbf,
+        contrast: (
+            50: #ffffff,
+            100: #ffffff,
+            200: #ffffff,
+            300: #ffffff,
+            400: #ffffff,
+            500: white,
+            600: #f2f2f2,
+            700: #e6e6e6,
+            800: #d9d9d9,
+            900: #cccccc,
+            A100: #ffffff,
+            A200: #ffffff,
+            A400: #ffffff,
+            A700: #bfbfbf
+        )
+);
+
+
+//the first two are the custom palettes we declared above
+$my-theme-primary: mat-palette($my-primary);
+$my-theme-accent: mat-palette($my-accent);
+//the third, for the warn color, is the predefined material red palette
+$my-theme-warn: mat-palette($mat-red);
+$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+$my-dark-primary: mat-palette($dark-primary);
+$my-dark-accent: mat-palette($dark-accent);
+$my-dark-theme: mat-dark-theme($my-dark-primary, $my-dark-accent, $my-theme-warn);
+@include angular-material-theme($my-theme);
+.dark-theme {
+    @include angular-material-theme($my-dark-theme);
+}
