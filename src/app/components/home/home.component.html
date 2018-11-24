@@ -1,15 +1,15 @@
 <div class="content-container">
     <mat-toolbar style="z-index: 10;" color="primary">
-        HikeAway
+        <h1>HikeAway</h1>
     </mat-toolbar>
     <mat-progress-bar mode="indeterminate" *ngIf="loadingData | async" style="max-height: 2px;">
     </mat-progress-bar>
 
     <div class="search-container dark-theme">
         <h1>Find Trails</h1>
-        <mat-form-field dividerColor="accent">
-            <input matInput type="text">
+        <mat-form-field dividerColor="accent" style="text-align: center;">
+            <input matInput type="text" [(ngModel)]="zip">
         </mat-form-field>
-        <button mat-raised-button class="search-btn">Search</button>
+        <button mat-raised-button class="search-btn" (click)="getLocationDetails()">Search</button>
     </div>
 </div>
