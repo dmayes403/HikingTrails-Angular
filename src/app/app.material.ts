@@ -5,6 +5,7 @@ import {
     MatCheckboxModule,
     MatToolbarModule,
     MatInputModule,
+    MatProgressBarModule,
 } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatToolbarModule,
         FlexLayoutModule,
         MatInputModule,
+        MatProgressBarModule,
     ],
     exports: [
         CommonModule,
@@ -26,6 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatToolbarModule,
         FlexLayoutModule,
         MatInputModule,
+        MatProgressBarModule,
     ],
 })
 
