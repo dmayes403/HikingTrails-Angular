@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 import { TrailsService } from '../../services/trails.service';
+import { Trail } from '../../interfaces/trail';
 
 @Component({
     selector: 'app-trails-list',
@@ -11,8 +12,7 @@ import { TrailsService } from '../../services/trails.service';
 export class TrailsListComponent implements OnInit {
     zip: string;
     distance: string;
-
-    
+    trails: Trail[];
 
     constructor(
         private route: ActivatedRoute,
@@ -27,8 +27,9 @@ export class TrailsListComponent implements OnInit {
 
                 return this.trailsService.getTrailsByZip(this.zip, this.distance);
             }),
-            tap(trails => {
-                console.log(trails);
+            tap(response => {
+                this.trails = response.trails;
+                console.log(response);
             })
         ).subscribe();
     }

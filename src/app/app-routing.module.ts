@@ -3,13 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { RootComponent } from './components/root/root.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
     {
         path: 'home',
         component: HomeComponent

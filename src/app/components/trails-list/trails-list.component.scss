@@ -1,0 +1,27 @@
+.main-container {
+    background-image: url('../../../assets/home_landscape.jpg');
+    background-size: cover;
+    height: calc(100% - 64px);
+    background-position: bottom;
+    position: relative;
+    overflow: auto;
+}
+
+.content-container {
+    width: 70%;
+    height: 100%;
+    margin: auto;
+    padding: 16px;
+    // background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(212, 186, 154, .8);
+}
+
+.list-container {
+    max-width: 60%;
+}
+
+.card-container {
+    margin-bottom: 16px;
+    // background-color: #917864;
+    border: 2px solid #917864;
+}

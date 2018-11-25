@@ -1,3 +1,10 @@
-<p>
-  trails-list works!
-</p>
+<div class="main-container">
+    <div class="content-container">
+        <div class="list-container">
+            <mat-card class="card-container" *ngFor="let trail of trails">
+                <img [src]="trail.imgSqSmall" alt="">
+            </mat-card>
+        </div>
+
+    </div>
+</div>

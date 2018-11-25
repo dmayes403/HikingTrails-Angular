@@ -1,0 +1,9 @@
+<div class="content-container">
+    <mat-toolbar color="primary">
+        <h1>HikeAway</h1>
+    </mat-toolbar>
+    <mat-progress-bar mode="indeterminate" *ngIf="loadingData | async" style="max-height: 2px;">
+    </mat-progress-bar>
+
+    <router-outlet></router-outlet>
+</div>
