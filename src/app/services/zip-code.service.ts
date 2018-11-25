@@ -13,9 +13,9 @@ import { ZipLocation } from '../interfaces/zip-location';
 })
 export class ZipCodeService {
     keys = keys.default;
-    constructor(
+    constructor (
         private apiService: ApiService
-        ) { }
+    ) { }
 
     getLocationDetails(zip: any): Observable<ZipLocation> {
         return this.apiService.get(
@@ -28,6 +28,4 @@ export class ZipCodeService {
             })
         );
     }
-
-    // console.log(data.results[0].locations)
 }

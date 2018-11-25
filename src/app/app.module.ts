@@ -8,11 +8,13 @@ import { MaterialModule } from './app.material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { TrailsListComponent } from './components/trails-list/trails-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
+        TrailsListComponent,
     ],
     imports: [
         BrowserModule,

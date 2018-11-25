@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
@@ -11,6 +13,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'trails',
+        component: TrailsListComponent
     },
     {
         path: '**',

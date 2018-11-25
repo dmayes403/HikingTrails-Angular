@@ -12,11 +12,14 @@
 
 .search-container {
     border: 2px solid white;
+    border-radius: 5px;
     width: 350px;
     height: 200px;
     margin: auto;
     transform: translateY(55%);
     text-align: center;
+    // background-color: rgba(212, 186, 154, .2);
+    background-color: #D4BA9A;
 
     h1 {
         color: white;
@@ -32,7 +35,7 @@
     display: block;
     min-width: 100px;
     margin: auto;
-    background-color: #d4ba9a;
+    background-color: #917864;
     color: white;
 }
 

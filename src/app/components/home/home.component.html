@@ -7,9 +7,13 @@
 
     <div class="search-container dark-theme">
         <h1>Find Trails</h1>
-        <mat-form-field dividerColor="accent" style="text-align: center;">
-            <input matInput type="text" [(ngModel)]="zip">
+        <mat-form-field style="text-align: center;">
+            <input matInput type="text" [(ngModel)]="zip" placeholder="Zipcode">
         </mat-form-field>
-        <button mat-raised-button class="search-btn" (click)="getLocationDetails()">Search</button>
+
+        <mat-form-field style="text-align: center; max-width: 75px; margin-left: 10px;">
+            <input matInput type="text" [(ngModel)]="distance" placeholder="Distance">
+        </mat-form-field>
+        <button mat-raised-button class="search-btn" (click)="goToTrailsList()">Search</button>
     </div>
 </div>
