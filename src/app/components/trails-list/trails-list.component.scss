@@ -1,3 +1,6 @@
+@import '../../../styles/common.scss';
+// https://www.google.com/search?q=natural+color+palette&tbm=isch&source=iu&ictx=1&fir=8AFe78dOcRkZuM%253A%252CIgzhHfhvq1GRLM%252C_&usg=AI4_-kT3CyTo9-JOXkfVhNXT4-XuZZVLrA&sa=X&ved=2ahUKEwiMyt6xlvHeAhVHlVQKHXFRAYkQ9QEwCnoECAUQGA#imgrc=8AFe78dOcRkZuM:
+
 .main-container {
     background-image: url('../../../assets/home_landscape.jpg');
     background-size: cover;
@@ -9,7 +12,6 @@
 
 .content-container {
     width: 70%;
-    height: 100%;
     margin: auto;
     padding: 16px;
     // background-color: rgba(255, 255, 255, .7);
@@ -22,6 +24,7 @@
 
 .card-container {
     margin-bottom: 16px;
-    // background-color: #917864;
+    background-color: $medium-spectrum;
+    // background-color: $light-spectrum;
     border: 2px solid #917864;
 }

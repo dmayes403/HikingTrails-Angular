@@ -28,7 +28,7 @@ export class TrailsListComponent implements OnInit {
                 return this.trailsService.getTrailsByZip(this.zip, this.distance);
             }),
             tap(response => {
-                this.trails = response.trails;
+                this.trails = response.trails.filter((trail: Trail) => trail.imgSqSmall);
                 console.log(response);
             })
         ).subscribe();

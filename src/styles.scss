@@ -2,6 +2,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./styles/custom-theme.scss";
 
+* {
+    font-family: 'Permanent Marker', cursive;
+}
+
 body {
     margin: 0px;
     font-family: 'Permanent Marker', cursive;

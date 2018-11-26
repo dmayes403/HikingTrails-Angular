@@ -1,8 +1,11 @@
 <div class="main-container">
     <div class="content-container">
         <div class="list-container">
-            <mat-card class="card-container" *ngFor="let trail of trails">
+            <mat-card class="card-container" *ngFor="let trail of trails" fxLayout="row">
                 <img [src]="trail.imgSqSmall" alt="">
+                <div>
+                    <h2>{{trail.name}}</h2>
+                </div>
             </mat-card>
         </div>
 
