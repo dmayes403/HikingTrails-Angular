@@ -34,4 +34,23 @@ export class TrailsListComponent implements OnInit {
         ).subscribe();
     }
 
+    getFullStars(trail: Trail) {
+        return new Array(Math.floor(trail.stars));
+    }
+
+    getHalfStars(trail: Trail) {
+        if (trail.stars % 1 > .3) {
+            return [1];
+        } else {
+            return [];
+        }
+    }
+
+    getEmptyStars(trail: Trail) {
+        const empty = 5 - trail.stars;
+        const emptyArr = new Array(Math.floor(empty));
+        const remainder = empty % 1;
+        const finalArr = remainder >= .7 ? [...emptyArr, 6] : [...emptyArr];
+        return finalArr;
+    }
 }
