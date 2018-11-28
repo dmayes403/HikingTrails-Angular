@@ -3,8 +3,10 @@
         <div class="list-container">
             <mat-card class="card-container" *ngFor="let trail of trails" fxLayout="row">
                 <img [src]="trail.imgSqSmall" alt="">
-                <div style="margin-left: 8px;">
+                <div style="margin-left: 8px;" fxLayout="column">
                     <h3>{{trail.name}}</h3>
+                    <span>{{trail.location}}</span>
+                    <span>Difficulty: {{trail.difficulty}}</span>
                     <div fxLayout="row">
                         <mat-icon *ngFor="let star of getFullStars(trail)">star</mat-icon>
                         <mat-icon *ngFor="let star of getHalfStars(trail)">star_half</mat-icon>
