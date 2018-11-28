@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { RootComponent } from './components/root/root.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { RootComponent } from './components/root/root.component';
         BrowserAnimationsModule,
         MaterialModule,
         HttpClientModule,
+        ScrollingModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

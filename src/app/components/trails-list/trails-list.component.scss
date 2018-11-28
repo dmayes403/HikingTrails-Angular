@@ -7,25 +7,34 @@
     height: calc(100% - 64px);
     background-position: bottom;
     position: relative;
-    overflow: auto;
 }
 
 .content-container {
     width: 70%;
     margin: auto;
     padding: 16px;
+    height: 100%;
     // background-color: rgba(255, 255, 255, .7);
     background-color: rgba(212, 186, 154, .8);
 }
 
-.list-container {
+.parent-list-container {
     max-width: 60%;
+    height: calc(100% - 64px);
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+.list-container {
+    max-height: calc(100% - 56px);
+    overflow: auto;
 }
 
 .card-container {
     margin-bottom: 16px;
+    margin-right: 16px;
     background-color: $medium-spectrum;
-    // background-color: $light-spectrum;
     border: 2px solid #917864;
 
     img {
@@ -36,4 +45,17 @@
 h3 {
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.paginator {
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    mat-icon {
+        cursor: pointer;
+        transform: scale(1.5);
+    }
 }
