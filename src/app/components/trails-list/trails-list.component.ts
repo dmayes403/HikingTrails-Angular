@@ -13,6 +13,9 @@ export class TrailsListComponent implements OnInit {
     zip: string;
     distance: string;
     trails: Trail[];
+    filteredTrails: Trail[];
+    pageArr = [];
+    activePage = 1;
 
     constructor(
         private route: ActivatedRoute,
@@ -29,7 +32,12 @@ export class TrailsListComponent implements OnInit {
             }),
             tap(response => {
                 this.trails = response.trails.filter((trail: Trail) => trail.imgSqSmall);
-                console.log(response);
+                this.filteredTrails = this.trails.slice(0, 50);
+                console.log(this.trails.length);
+                console.log(Math.ceil(this.trails.length / 50));
+                for (let i = 1; i <= Math.ceil(this.trails.length / 50); i++) {
+                    this.pageArr.push(i);
+                }
             })
         ).subscribe();
     }
@@ -52,5 +60,19 @@ export class TrailsListComponent implements OnInit {
         const remainder = empty % 1;
         const finalArr = remainder >= .7 ? [...emptyArr, 6] : [...emptyArr];
         return finalArr;
+    }
+
+    getPageByNum(pageNum: number) {
+        console.log(pageNum);
+        const endPage = Math.ceil(this.trails.length / 50);
+        if (pageNum === -1) {
+            this.filteredTrails = this.trails.slice((endPage - 1) * 50, endPage * 50);
+            this.activePage = endPage;
+        } else if (pageNum < 1 || pageNum > endPage) {
+            return;
+        } else {
+            this.filteredTrails = this.trails.slice((pageNum - 1) * 50, pageNum * 50);
+            this.activePage = pageNum;
+        }
     }
 }
