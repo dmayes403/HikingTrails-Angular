@@ -1,6 +1,24 @@
 <div class="main-container">
     <div class="content-container">
         <div class="parent-list-container">
+            <div fxLayout="row">
+                <mat-form-field style="margin-right: 50px;">
+                    <mat-select placeholder="Filter By" [formControl]="filterType">
+                        <mat-option value="none">None</mat-option>
+                        <mat-option value="rating">Rating</mat-option>
+                        <mat-option value="difficulty">Difficulty</mat-option>
+                        <mat-option value="completed">Completed</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Select">
+                        <mat-option value="none">None</mat-option>
+                        <mat-option *ngFor="let option of filterOptions"></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
             <div class="list-container">
                 <mat-card class="card-container" *ngFor="let trail of filteredTrails" fxLayout="row">
                     <img [src]="trail.imgSqSmall" alt="">

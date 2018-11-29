@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, takeUntil } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+
 import { TrailsService } from '../../services/trails.service';
+
 import { Trail } from '../../interfaces/trail';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-trails-list',
     templateUrl: './trails-list.component.html',
     styleUrls: ['./trails-list.component.scss']
 })
-export class TrailsListComponent implements OnInit {
+export class TrailsListComponent implements OnInit, OnDestroy {
+    unsubscribe = new Subject();
+
     zip: string;
     distance: string;
     trails: Trail[];
     filteredTrails: Trail[];
     pageArr = [];
     activePage = 1;
+    filterOptions = [];
+    filterType = new FormControl('');
 
     constructor(
         private route: ActivatedRoute,
@@ -38,6 +46,13 @@ export class TrailsListComponent implements OnInit {
                 for (let i = 1; i <= Math.ceil(this.trails.length / 50); i++) {
                     this.pageArr.push(i);
                 }
+            })
+        ).subscribe();
+
+        this.filterType.valueChanges.pipe(
+            takeUntil(this.unsubscribe),
+            tap(filterType => {
+                console.log(filterType);
             })
         ).subscribe();
     }
@@ -75,4 +90,11 @@ export class TrailsListComponent implements OnInit {
             this.activePage = pageNum;
         }
     }
+
+    ngOnDestroy() {
+        this.unsubscribe.next();
+        this.unsubscribe.complete();
+    }
 }
+
+// ***** Next Step Is to create filters, i.e. for difficulty, rating etc. ******

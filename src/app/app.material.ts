@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatButtonModule,
     MatCheckboxModule,
@@ -9,7 +9,10 @@ import {
     MatProgressBarModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
 } from '@angular/material';
+
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -26,6 +29,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         MatCardModule,
         MatIconModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
     ],
     exports: [
         CommonModule,
@@ -38,6 +44,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         MatCardModule,
         MatIconModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
     ],
 })
 
