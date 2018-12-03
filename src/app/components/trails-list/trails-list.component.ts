@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import * as _ from 'lodash';
 
 import { TrailsService } from '../../services/trails.service';
 
@@ -19,6 +20,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     zip: string;
     distance: string;
     trails: Trail[];
+    currentTrails: Trail[];
     filteredTrails: Trail[];
     pageArr = [];
     activePage = 1;
@@ -33,7 +35,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
 
     difficultyOptions = [
         {desc: 'Hard to Easy', value: 'desc'},
-        {desc: 'Easy to Hard', value: 'desc'},
+        {desc: 'Easy to Hard', value: 'asc'},
     ];
 
     completionOptions = [
@@ -56,10 +58,11 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             }),
             tap(response => {
                 this.trails = response.trails.filter((trail: Trail) => trail.imgSqSmall);
-                this.filteredTrails = this.trails.slice(0, 50);
-                console.log(this.trails.length);
+                this.currentTrails = this.trails;
+                this.filteredTrails = this.currentTrails.slice(0, 50);
+                console.log(this.trails);
                 console.log(Math.ceil(this.trails.length / 50));
-                for (let i = 1; i <= Math.ceil(this.trails.length / 50); i++) {
+                for (let i = 1; i <= Math.ceil(this.currentTrails.length / 50); i++) {
                     this.pageArr.push(i);
                 }
             })
@@ -88,7 +91,56 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         this.filterOption.valueChanges.pipe(
             takeUntil(this.unsubscribe),
             tap(filterOption => {
-                console.log(filterOption);
+                switch (this.filterType.value) {
+                    case 'rating':
+                        const tempTrails = _.orderBy(this.trails, 'stars', filterOption.value);
+                        this.currentTrails = tempTrails;
+                        this.filteredTrails = this.currentTrails.slice(0, 50);
+                        this.activePage = 1;
+                        break;
+                    case 'difficulty':
+                        const dblack = [];
+                        const black = [];
+                        const blueblack = [];
+                        const blue = [];
+                        const greenblue = [];
+                        const green = [];
+                        this.trails.forEach(trail => {
+                            switch (trail.difficulty.toLowerCase()) {
+                                case 'dblack':
+                                    dblack.push(trail);
+                                    break;
+                                case 'black':
+                                    black.push(trail);
+                                    break;
+                                case 'blueblack':
+                                    blueblack.push(trail);
+                                    break;
+                                case 'blue':
+                                    blue.push(trail);
+                                    break;
+                                case 'greenblue':
+                                    greenblue.push(trail);
+                                    break;
+                                case 'green':
+                                    green.push(trail);
+                                    break;
+                            }
+                        });
+                        console.log(filterOption.value);
+                        if (filterOption.value === 'desc') {
+                            this.currentTrails = [...dblack, ...black, ...blueblack, ...blue, ...greenblue, ...green];
+                        } else {
+                            this.currentTrails = [...green, ...greenblue, ...blue, ...blueblack, ...black, ...dblack];
+                        }
+                        this.filteredTrails = this.currentTrails.slice(0, 50);
+                        this.activePage = 1;
+                        console.log('sorting difficulty');
+                        break;
+                    case 'completion':
+                        console.log('sorting completion');
+                        break;
+                }
             })
         ).subscribe();
     }
@@ -115,14 +167,14 @@ export class TrailsListComponent implements OnInit, OnDestroy {
 
     getPageByNum(pageNum: number) {
         console.log(pageNum);
-        const endPage = Math.ceil(this.trails.length / 50);
+        const endPage = Math.ceil(this.currentTrails.length / 50);
         if (pageNum === -1) {
-            this.filteredTrails = this.trails.slice((endPage - 1) * 50, endPage * 50);
+            this.filteredTrails = this.currentTrails.slice((endPage - 1) * 50, endPage * 50);
             this.activePage = endPage;
         } else if (pageNum < 1 || pageNum > endPage) {
             return;
         } else {
-            this.filteredTrails = this.trails.slice((pageNum - 1) * 50, pageNum * 50);
+            this.filteredTrails = this.currentTrails.slice((pageNum - 1) * 50, pageNum * 50);
             this.activePage = pageNum;
         }
     }
