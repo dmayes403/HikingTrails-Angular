@@ -12,9 +12,9 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-select placeholder="Select">
+                    <mat-select placeholder="Select" [formControl]="filterOption">
                         <mat-option value="none">None</mat-option>
-                        <mat-option *ngFor="let option of filterOptions">{{option.desc}}</mat-option>
+                        <mat-option [value]="option" *ngFor="let option of filterOptions">{{option.desc}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

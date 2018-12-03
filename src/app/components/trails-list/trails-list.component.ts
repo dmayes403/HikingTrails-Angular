@@ -24,6 +24,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     activePage = 1;
     filterOptions = [];
     filterType = new FormControl('');
+    filterOption = new FormControl('');
 
     ratingOptions = [
         {desc: 'Highest to Lowest', value: 'desc'},
@@ -81,6 +82,13 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                     default:
                         this.filterOptions = [];
                 }
+            })
+        ).subscribe();
+
+        this.filterOption.valueChanges.pipe(
+            takeUntil(this.unsubscribe),
+            tap(filterOption => {
+                console.log(filterOption);
             })
         ).subscribe();
     }
