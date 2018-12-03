@@ -25,6 +25,21 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterOptions = [];
     filterType = new FormControl('');
 
+    ratingOptions = [
+        {desc: 'Highest to Lowest', value: 'desc'},
+        {desc: 'Lowest to Highest', value: 'asc'}
+    ];
+
+    difficultyOptions = [
+        {desc: 'Hard to Easy', value: 'desc'},
+        {desc: 'Easy to Hard', value: 'desc'},
+    ];
+
+    completionOptions = [
+        {desc: 'Completed', value: 'desc'},
+        {desc: 'Not Completed', value: 'asc'},
+    ];
+
     constructor(
         private route: ActivatedRoute,
         private trailsService: TrailsService,
@@ -53,6 +68,19 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             takeUntil(this.unsubscribe),
             tap(filterType => {
                 console.log(filterType);
+                switch (filterType) {
+                    case 'rating':
+                        this.filterOptions = this.ratingOptions;
+                        break;
+                    case 'difficulty':
+                        this.filterOptions = this.difficultyOptions;
+                        break;
+                    case 'completion':
+                        this.filterOptions = this.completionOptions;
+                        break;
+                    default:
+                        this.filterOptions = [];
+                }
             })
         ).subscribe();
     }

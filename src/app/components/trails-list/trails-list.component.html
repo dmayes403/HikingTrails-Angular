@@ -7,14 +7,14 @@
                         <mat-option value="none">None</mat-option>
                         <mat-option value="rating">Rating</mat-option>
                         <mat-option value="difficulty">Difficulty</mat-option>
-                        <mat-option value="completed">Completed</mat-option>
+                        <mat-option value="completion">Completion</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-select placeholder="Select">
                         <mat-option value="none">None</mat-option>
-                        <mat-option *ngFor="let option of filterOptions"></mat-option>
+                        <mat-option *ngFor="let option of filterOptions">{{option.desc}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
