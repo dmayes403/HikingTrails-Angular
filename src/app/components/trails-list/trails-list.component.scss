@@ -71,5 +71,12 @@ h3 {
 
 .spinner-container {
     margin-top: 100px;
-    transform: translateX(48%)
+    transform: translateX(48%);
+    position: relative;
+}
+
+.completion-rate {
+    position: absolute;
+    top: 40px;
+    left: 50px;
 }

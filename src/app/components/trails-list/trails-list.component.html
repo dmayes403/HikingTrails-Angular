@@ -50,10 +50,15 @@
         </div>
 
         <div>
-            <div class="spinner-container">
-                <mat-spinner [mode]="'determinate'" strokeWidth="8" diameter="150" [value]="completionRate">
-                    {{completionRate}}
-                </mat-spinner>
+            <div class="spinner-container dark-theme">
+                <mat-progress-spinner
+                    mode="determinate"
+                    diameter="150"
+                    strokeWidth="8"
+                    color="accent"
+                    [value]="completionRate">
+                </mat-progress-spinner>
+                <h2 class="completion-rate">{{completionRate}}%</h2>
             </div>
         </div>
     </div>
