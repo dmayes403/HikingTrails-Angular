@@ -27,6 +27,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterOptions = [];
     filterType = new FormControl('');
     filterOption = new FormControl('');
+    completionRate = 90;
 
     ratingOptions = [
         {desc: 'Highest to Lowest', value: 'desc'},

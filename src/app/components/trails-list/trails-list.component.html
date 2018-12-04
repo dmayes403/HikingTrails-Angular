@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="content-container">
+    <div class="content-container" fxLayout="row">
         <div class="parent-list-container">
             <div fxLayout="row" fxLayoutAlign="center center">
                 <mat-form-field style="margin-right: 50px;">
@@ -49,5 +49,12 @@
             </div>
         </div>
 
+        <div>
+            <div class="spinner-container">
+                <mat-spinner [mode]="'determinate'" strokeWidth="8" diameter="150" [value]="completionRate">
+                    {{completionRate}}
+                </mat-spinner>
+            </div>
+        </div>
     </div>
 </div>
