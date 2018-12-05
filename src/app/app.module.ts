@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { RootComponent } from './components/root/root.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
         HomeComponent,
         TrailsListComponent,
         RootComponent,
+        TrailDetailsComponent,
     ],
     imports: [
         BrowserModule,

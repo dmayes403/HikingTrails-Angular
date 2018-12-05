@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-main-root',
-  templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+    selector: 'app-main-root',
+    templateUrl: './root.component.html',
+    styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+    constructor(
+        private router: Router
+    ) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    goHome() {
+        this.router.navigate(['/home']);
+    }
 
 }

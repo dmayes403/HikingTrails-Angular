@@ -88,6 +88,9 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                     case 'completion':
                         this.filterOptions = this.completionOptions;
                         break;
+                    case 'interested':
+                        this.filterOptions = this.InterestedOptions;
+                        break;
                     default:
                         this.filterOptions = [];
                 }
@@ -133,7 +136,6 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                                     break;
                             }
                         });
-                        console.log(filterOption.value);
                         if (filterOption.value === 'desc') {
                             this.currentTrails = [...dblack, ...black, ...blueblack, ...blue, ...greenblue, ...green];
                         } else {
@@ -141,10 +143,12 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                         }
                         this.filteredTrails = this.currentTrails.slice(0, 50);
                         this.activePage = 1;
-                        console.log('sorting difficulty');
                         break;
                     case 'completion':
-                        console.log('sorting completion');
+                        console.log('sorting completion incomplete');
+                        break;
+                    case 'interested':
+                        console.log('sorting interested incomplete');
                         break;
                 }
             })

@@ -39,6 +39,7 @@
     margin-right: 16px;
     background-color: $medium-spectrum;
     border: 2px solid #917864;
+    cursor: pointer;
 
     img {
         border-radius: 5px;
@@ -98,4 +99,8 @@ h3 {
 
 .right-container {
     width: 40%;
+}
+
+.num-box {
+    border-bottom: 2px solid black;
 }
