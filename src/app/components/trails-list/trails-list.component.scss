@@ -21,7 +21,7 @@
 }
 
 .parent-list-container {
-    max-width: 60%;
+    width: 60%;
     // height: calc(100% - 16px);
     height: 100%;
     overflow: hidden;
@@ -69,14 +69,33 @@ h3 {
     margin-right: 10px;
 }
 
+.completed-container {
+    max-width: 150px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+}
+
 .spinner-container {
-    margin-top: 100px;
-    transform: translateX(48%);
+    width: 140px;
+    margin: auto;
+    margin-top: 30px;
     position: relative;
+    z-index: 1;
 }
 
 .completion-rate {
     position: absolute;
     top: 40px;
     left: 50px;
+}
+
+.spinner-container-underlay {
+    width: 140px;
+    margin: auto;
+    margin-top: -150px;
+}
+
+.right-container {
+    width: 40%;
 }
