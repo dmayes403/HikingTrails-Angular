@@ -44,6 +44,11 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         {desc: 'Not Completed', value: 'asc'},
     ];
 
+    InterestedOptions = [
+        {desc: 'Interested', value: 'desc'},
+        {desc: 'Not Interested', value: 'asc'},
+    ];
+
     constructor(
         private route: ActivatedRoute,
         private trailsService: TrailsService,
