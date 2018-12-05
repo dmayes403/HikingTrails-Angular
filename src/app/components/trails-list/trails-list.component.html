@@ -21,7 +21,8 @@
             </div>
 
             <div class="list-container">
-                <mat-card class="card-container" *ngFor="let trail of filteredTrails" fxLayout="row">
+                <mat-card class="card-container" *ngFor="let trail of filteredTrails" 
+                    fxLayout="row" (click)="goToTrailDetails(trail)">
                     <img [src]="trail.imgSqSmall" alt="">
                     <div style="margin-left: 8px;" fxLayout="column">
                         <h3>{{trail.name}}</h3>

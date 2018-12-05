@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { RootComponent } from './components/root/root.component';
+import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
 
 const routes: Routes = [
     {
@@ -13,6 +13,10 @@ const routes: Routes = [
     {
         path: 'trails',
         component: TrailsListComponent
+    },
+    {
+        path: 'trail-details',
+        component: TrailDetailsComponent
     },
     {
         path: '**',

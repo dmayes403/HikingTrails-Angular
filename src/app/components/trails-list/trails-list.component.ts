@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import * as _ from 'lodash';
@@ -50,8 +50,9 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     ];
 
     constructor(
-        private route: ActivatedRoute,
         private trailsService: TrailsService,
+        private route: ActivatedRoute,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -62,12 +63,10 @@ export class TrailsListComponent implements OnInit, OnDestroy {
 
                 return this.trailsService.getTrailsByZip(this.zip, this.distance);
             }),
-            tap(response => {
-                this.trails = response.trails.filter((trail: Trail) => trail.imgSqSmall);
+            tap(trails => {
+                this.trails = trails.filter((trail: Trail) => trail.imgSqSmall);
                 this.currentTrails = this.trails;
                 this.filteredTrails = this.currentTrails.slice(0, 50);
-                console.log(this.trails);
-                console.log(Math.ceil(this.trails.length / 50));
                 for (let i = 1; i <= Math.ceil(this.currentTrails.length / 50); i++) {
                     this.pageArr.push(i);
                 }
@@ -187,6 +186,10 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             this.filteredTrails = this.currentTrails.slice((pageNum - 1) * 50, pageNum * 50);
             this.activePage = pageNum;
         }
+    }
+
+    goToTrailDetails(trail: Trail) {
+        this.router.navigate(['/trail-details', {id: trail.id}]);
     }
 
     ngOnDestroy() {
