@@ -1,5 +1,18 @@
 <div class="main-container">
     <div class="content-container" fxLayout="row">
+        <div class="main-img">
+            <img [src]="trail?.imgMedium" alt="">
+        </div>
 
+        <div class="details-container">
+            <h2>{{trail?.name}}</h2>
+            <div fxLayout="row" style="margin: 5px 0px">
+                <mat-icon *ngFor="let star of getFullStars(trail)">star</mat-icon>
+                <mat-icon *ngFor="let star of getHalfStars(trail)">star_half</mat-icon>
+                <mat-icon *ngFor="let star of getEmptyStars(trail)">star_border</mat-icon>
+                <span class="add-rating" fxLayoutAlign="center center">Add Rating</span>
+            </div>
+            <div>Difficulty: {{trail?.difficulty}}</div>
+        </div>
     </div>
 </div>

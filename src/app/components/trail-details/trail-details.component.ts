@@ -34,6 +34,32 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         ).subscribe();
     }
 
+    getFullStars(trail: Trail) {
+        if (trail) {
+            return new Array(Math.floor(trail.stars));
+        }
+    }
+
+    getHalfStars(trail: Trail) {
+        if (trail) {
+            if (trail.stars % 1 > .3) {
+                return [1];
+            } else {
+                return [];
+            }
+        }
+    }
+
+    getEmptyStars(trail: Trail) {
+        if (trail) {
+            const empty = 5 - trail.stars;
+            const emptyArr = new Array(Math.floor(empty));
+            const remainder = empty % 1;
+            const finalArr = remainder >= .7 ? [...emptyArr, 6] : [...emptyArr];
+            return finalArr;
+        }
+    }
+
     ngOnDestroy() {
         this.unsubscribe.next();
         this.unsubscribe.complete();
