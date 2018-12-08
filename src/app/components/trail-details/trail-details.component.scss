@@ -18,6 +18,9 @@
 }
 
 .main-img {
+    height: 350px;
+    width: 250px;
+
     img  {
         height: 350px;
         width: 250px;
@@ -29,7 +32,7 @@
 .details-container {
     margin-left: 16px;
 
-    h2 {
+    h2, h5 {
         margin: 0px;
     }
 
@@ -39,4 +42,10 @@
         color: #56198B;
         margin-left: 25px;
     }
+}
+
+.data-container {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid $primary-spectrum;
 }
