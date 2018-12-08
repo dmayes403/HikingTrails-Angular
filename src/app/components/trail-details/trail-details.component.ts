@@ -1,10 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
+import { WeatherService } from '../../services/weather.service';
 import { TrailsService } from '../../services/trails.service';
+
 import { Trail } from '../../interfaces/trail';
-import { switchMap, tap, takeUntil } from 'rxjs/operators';
+import { Weather } from '../../interfaces/weather';
 
 @Component({
     selector: 'app-trail-details',
@@ -15,10 +18,12 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     unsubscribe = new Subject();
 
     trail: Trail;
+    weather: Weather;
 
     constructor(
         private trailsService: TrailsService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private weatherService: WeatherService
     ) { }
 
     ngOnInit() {
@@ -27,9 +32,14 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
             switchMap(params => {
                 return this.trailsService.getTrailById(params['id']);
             }),
-            tap(trail => {
+            switchMap((trail: Trail[]) => {
                 console.log(trail);
                 this.trail = trail[0];
+                return this.weatherService.getFiveDayForecast(this.trail.latitude, this.trail.longitude);
+            }),
+            tap((weather: Weather) => {
+                console.log(weather);
+                this.weather = weather;
             })
         ).subscribe();
     }

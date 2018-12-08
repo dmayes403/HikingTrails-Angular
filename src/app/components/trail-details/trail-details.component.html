@@ -5,7 +5,7 @@
                 <img src="{{trail?.imgMedium}}" alt="">
             </div>
     
-            <div class="details-container">
+            <div class="details-container" fxLayout="column">
                 <h2>{{trail?.name}}</h2>
                 <div fxLayout="row" style="margin: 5px 0px">
                     <mat-icon *ngFor="let star of getFullStars(trail)">star</mat-icon>
@@ -16,7 +16,19 @@
                 </div>
                 <div style="font-size: 12px;">Location: {{trail?.location}}</div>
                 <div>Difficulty: {{trail?.difficulty}}</div>
-                <div style="margin-top: 24px;">{{trail?.summary}}</div>
+                <div style="margin-top: 24px; max-width: 75%;">{{trail?.summary}}</div>
+
+                <div fxFlex></div>
+
+                <div style="text-align: center;">
+                    <h4 style="margin-bottom: 0px;">5 Day Forecast</h4>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <div *ngFor="let weather of weather?.list">
+                            <img [src]="'http://openweathermap.org/img/w/' + weather.weather[0].icon +'.png'" alt=""
+                            style="margin-right: 16px;">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
