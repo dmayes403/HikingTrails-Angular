@@ -23,10 +23,10 @@
                 <div style="text-align: center;">
                     <h4 style="margin-bottom: 0px;">5 Day Forecast</h4>
                     <div fxLayout="row" fxLayoutAlign="center">
-                        <div *ngFor="let weather of weather?.list">
-                            <img [src]="'http://openweathermap.org/img/w/' + weather.weather[0].icon +'.png'" alt=""
-                            style="margin-right: 16px;">
-                            <div fxLayout="row">
+                        <div *ngFor="let weather of weather?.list; let i = index;" class="daily-weather">
+                            <img [src]="'http://openweathermap.org/img/w/' + weather.weather[0].icon +'.png'">
+                            <div>{{getDate(i) | date: 'EEE'}}</div>
+                            <div fxLayout="row" fxLayoutAlign="center">
                                 <div>{{weather.temp.day}}</div>
                                 <img id="temp-icon" src="https://www.degreesymbol.net/degree.png" alt="">
                             </div>

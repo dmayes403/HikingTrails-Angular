@@ -19,6 +19,7 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
 
     trail: Trail;
     weather: Weather;
+    today = new Date();
 
     constructor(
         private trailsService: TrailsService,
@@ -68,6 +69,12 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
             const finalArr = remainder >= .7 ? [...emptyArr, 6] : [...emptyArr];
             return finalArr;
         }
+    }
+
+    getDate(index: number): Date {
+        const today = new Date();
+        const daysToAdd = index;
+        return new Date(today.setDate(today.getDate() + daysToAdd));
     }
 
     ngOnDestroy() {
