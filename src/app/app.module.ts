@@ -12,6 +12,7 @@ import { TrailsListComponent } from './components/trails-list/trails-list.compon
 import { RootComponent } from './components/root/root.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
+import { ForecastDialogComponent } from './components/forecast-dialog/forecast-dialog.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { TrailDetailsComponent } from './components/trail-details/trail-details.
         TrailsListComponent,
         RootComponent,
         TrailDetailsComponent,
+        ForecastDialogComponent,
     ],
     imports: [
         BrowserModule,
