@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import { Subject } from 'rxjs';
 
 import { WeatherService } from '../../services/weather.service';
@@ -8,6 +9,7 @@ import { TrailsService } from '../../services/trails.service';
 
 import { Trail } from '../../interfaces/trail';
 import { Weather } from '../../interfaces/weather';
+import { ForecastDialogComponent } from '../forecast-dialog/forecast-dialog.component';
 
 @Component({
     selector: 'app-trail-details',
@@ -22,9 +24,10 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     today = new Date();
 
     constructor(
+        private weatherService: WeatherService,
         private trailsService: TrailsService,
         private route: ActivatedRoute,
-        private weatherService: WeatherService
+        public dialog: MatDialog,
     ) { }
 
     ngOnInit() {
@@ -75,6 +78,16 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         const today = new Date();
         const daysToAdd = index;
         return new Date(today.setDate(today.getDate() + daysToAdd));
+    }
+
+    getTemp(temp: number) {
+        const remainder = temp % 1;
+        const addedNum = remainder <= .49 ? 0 : 1;
+        return Math.floor(temp) + addedNum;
+    }
+
+    openWeatherDialog(): void {
+        const dialogRef = this.dialog.open(ForecastDialogComponent);
     }
 
     ngOnDestroy() {

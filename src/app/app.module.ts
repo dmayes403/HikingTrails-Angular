@@ -32,6 +32,9 @@ import { ForecastDialogComponent } from './components/forecast-dialog/forecast-d
         ScrollingModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        ForecastDialogComponent
+    ]
 })
 export class AppModule { }

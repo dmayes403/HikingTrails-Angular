@@ -12,6 +12,7 @@ import {
     MatSelectModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
 } from '@angular/material';
 
 
@@ -33,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatSelectModule,
         MatFormFieldModule,
         ReactiveFormsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule,
     ],
     exports: [
         CommonModule,
@@ -49,7 +51,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatSelectModule,
         MatFormFieldModule,
         ReactiveFormsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule,
     ],
 })
 
