@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Forecast } from '../../interfaces/forecast';
+import { ZipCodeService } from '../../services/zip-code.service';
 
 @Component({
     selector: 'app-forecast-dialog',
@@ -13,10 +14,10 @@ export class ForecastDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: {
             weather: Forecast,
             date: Date,
-            longitutde: number,
-            latitude: number
+            location: string
         },
-        public dialogRef: MatDialogRef<ForecastDialogComponent>
+        public dialogRef: MatDialogRef<ForecastDialogComponent>,
+        private zipCodeService: ZipCodeService
     ) { }
 
     ngOnInit() {

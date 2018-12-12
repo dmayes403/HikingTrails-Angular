@@ -28,4 +28,17 @@ export class ZipCodeService {
             })
         );
     }
+
+    getLocationFrmLatLng(lat: number, long: number): Observable<ZipLocation> {
+        return this.apiService.get(
+            `http://www.mapquestapi.com/geocoding/v1/reverse?key=${this.keys.mapQuestAPI}&location=${lat},${long}`,
+            undefined
+        ).pipe(
+            map(data => {
+                console.log(data);
+                const USLocation = _.find(data.results[0].locations, {'adminArea1': 'US'});
+                return USLocation;
+            })
+        );
+    }
 }

@@ -92,8 +92,7 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
             data: {
                 weather,
                 date ,
-                longitude: this.trail.longitude,
-                latitude: this.trail.latitude
+                location: this.trail.location
             }
         });
     }

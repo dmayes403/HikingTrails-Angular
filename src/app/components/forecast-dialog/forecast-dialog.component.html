@@ -1,3 +1,10 @@
-<div>
+<div style="text-align: center;">
+    <h3>{{data.location}}</h3>
     <h4>{{data.date | date:'EEEE, MMMM d'}}</h4>
+
+    <div style="text-align: left;">
+        <img id="weather-icon" [src]="'http://openweathermap.org/img/w/' + data.weather.weather[0].icon +'.png'">
+    </div>
+
+    <!-- TRY GETTING WEATHER IN 3 HOUR INCREMENTS***** -->
 </div>
