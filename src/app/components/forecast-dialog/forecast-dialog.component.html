@@ -1,9 +1,42 @@
 <div style="text-align: center;">
     <h3>{{data.location}}</h3>
-    <h4>{{data.date | date:'EEEE, MMMM d'}}</h4>
+    <h5>{{data.date | date:'EEEE, MMMM d'}}</h5>
 
-    <div style="text-align: left;">
+    <div>
         <img id="weather-icon" [src]="'http://openweathermap.org/img/w/' + data.weather.weather[0].icon +'.png'">
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="border-bottom: 1px solid black;">
+        <p>High: {{getTemp(data.weather.temp.max)}}</p>
+        <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+
+        <p style="margin-left: 25px;">Low: {{getTemp(data.weather.temp.min)}}</p>
+        <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+    </div>
+
+    <div style="margin-top: 15px;">
+        <div fxLayout="row">
+            <div fxLayout="row" fxFlex="50">
+                <p>Morning: {{getTemp(data.weather.temp.morn)}}</p>
+                <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+            </div>
+
+            <div fxLayout="row" fxFlex="50" style="padding-left: 15px;">
+                <p>Day: {{getTemp(data.weather.temp.day)}}</p>
+                <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+            </div>
+        </div>
+        <div fxLayout="row">
+            <div fxLayout="row" fxFlex="50">
+                <p>Evening: {{getTemp(data.weather.temp.eve)}}</p>
+                <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+            </div>
+
+            <div fxLayout="row" fxFlex="50" style="padding-left: 15px;">
+                <p>Night: {{getTemp(data.weather.temp.night)}}</p>
+                <img id="temp-icon" src="https://www.degreesymbol.net/degree.png">
+            </div>
+        </div>
     </div>
 
     <!-- TRY GETTING WEATHER IN 3 HOUR INCREMENTS***** -->

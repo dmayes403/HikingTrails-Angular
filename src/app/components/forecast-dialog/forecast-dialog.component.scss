@@ -1,8 +1,19 @@
-h4, h3 {
+h5, h3 {
     margin: 0px;
 }
 
 #weather-icon {
     width: 100px;
     height: 100px;
+    margin-top: -15px;
+    margin-bottom: -25px;
+}
+
+#temp-icon {
+    max-width: 10px;
+    max-height: 10px;
+}
+
+p {
+    margin: 0px;
 }

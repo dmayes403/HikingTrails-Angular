@@ -24,4 +24,9 @@ export class ForecastDialogComponent implements OnInit {
         console.log(this.data);
     }
 
+    getTemp(temp: number) {
+        const remainder = temp % 1;
+        const addedNum = remainder <= .49 ? 0 : 1;
+        return Math.floor(temp) + addedNum;
+    }
 }

@@ -97,6 +97,8 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         });
     }
 
+    addRating() {}
+
     ngOnDestroy() {
         this.unsubscribe.next();
         this.unsubscribe.complete();
