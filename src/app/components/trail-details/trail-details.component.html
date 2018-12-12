@@ -24,7 +24,7 @@
                     <h4 style="margin-bottom: 0px;">5 Day Forecast</h4>
                     <div fxLayout="row" fxLayoutAlign="center">
                         <div *ngFor="let weather of weather?.list; let i = index;" 
-                            class="daily-weather" (click)="openWeatherDialog()">
+                            class="daily-weather" (click)="openWeatherDialog(weather, getDate(i))">
                             <img [src]="'http://openweathermap.org/img/w/' + weather.weather[0].icon +'.png'">
                             <div>{{getDate(i) | date: 'EEE'}}</div>
                             <div fxLayout="row" fxLayoutAlign="center">

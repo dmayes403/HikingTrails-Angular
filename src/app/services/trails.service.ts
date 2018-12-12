@@ -24,6 +24,7 @@ export class TrailsService {
     getTrailsByZip(zip: string, distance?: string): Observable<Trail[]> {
         return this.zipCodeService.getLocationDetails(zip).pipe(
             switchMap((locationDetails: ZipLocation) => {
+                console.log(locationDetails);
                 return this.apiService.get(`https://www.hikingproject.com/data/get-trails?lat=${locationDetails.latLng.lat}&lon=${locationDetails.latLng.lng}&maxDistance=${distance ? distance : '10'}&key=${this.keys.hikingAPI}&maxResults=500`, undefined);
             }),
             map((response: {success: number, trails: Trail[]}) => response.trails)

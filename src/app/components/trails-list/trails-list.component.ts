@@ -175,7 +175,6 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     }
 
     getPageByNum(pageNum: number) {
-        console.log(pageNum);
         const endPage = Math.ceil(this.currentTrails.length / 50);
         if (pageNum === -1) {
             this.filteredTrails = this.currentTrails.slice((endPage - 1) * 50, endPage * 50);

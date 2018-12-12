@@ -10,6 +10,7 @@ import { TrailsService } from '../../services/trails.service';
 import { Trail } from '../../interfaces/trail';
 import { Weather } from '../../interfaces/weather';
 import { ForecastDialogComponent } from '../forecast-dialog/forecast-dialog.component';
+import { Forecast } from '../../interfaces/forecast';
 
 @Component({
     selector: 'app-trail-details',
@@ -86,8 +87,15 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         return Math.floor(temp) + addedNum;
     }
 
-    openWeatherDialog(): void {
-        const dialogRef = this.dialog.open(ForecastDialogComponent);
+    openWeatherDialog(weather: Forecast, date: Date): void {
+        const dialogRef = this.dialog.open(ForecastDialogComponent, {
+            data: {
+                weather,
+                date ,
+                longitude: this.trail.longitude,
+                latitude: this.trail.latitude
+            }
+        });
     }
 
     ngOnDestroy() {
