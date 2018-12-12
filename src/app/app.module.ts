@@ -5,14 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './app.material';
-
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { TrailsListComponent } from './components/trails-list/trails-list.component';
-import { RootComponent } from './components/root/root.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
+
 import { ForecastDialogComponent } from './components/forecast-dialog/forecast-dialog.component';
+import { RatingDialogComponent } from './components/rating-dialog/rating-dialog.component';
+import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
+import { TrailsListComponent } from './components/trails-list/trails-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { RootComponent } from './components/root/root.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { ForecastDialogComponent } from './components/forecast-dialog/forecast-d
         RootComponent,
         TrailDetailsComponent,
         ForecastDialogComponent,
+        RatingDialogComponent,
     ],
     imports: [
         BrowserModule,
