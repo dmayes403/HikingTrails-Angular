@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Forecast } from '../../interfaces/forecast';
 import { ZipCodeService } from '../../services/zip-code.service';
 
@@ -21,7 +21,6 @@ export class ForecastDialogComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log(this.data);
     }
 
     getTemp(temp: number) {

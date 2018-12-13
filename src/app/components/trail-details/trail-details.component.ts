@@ -7,10 +7,12 @@ import { Subject } from 'rxjs';
 import { WeatherService } from '../../services/weather.service';
 import { TrailsService } from '../../services/trails.service';
 
-import { Trail } from '../../interfaces/trail';
-import { Weather } from '../../interfaces/weather';
-import { ForecastDialogComponent } from '../forecast-dialog/forecast-dialog.component';
 import { Forecast } from '../../interfaces/forecast';
+import { Weather } from '../../interfaces/weather';
+import { Trail } from '../../interfaces/trail';
+
+import { ForecastDialogComponent } from '../forecast-dialog/forecast-dialog.component';
+import { RatingDialogComponent } from '../rating-dialog/rating-dialog.component';
 
 @Component({
     selector: 'app-trail-details',
@@ -97,7 +99,13 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         });
     }
 
-    addRating() {}
+    addRating() {
+        const dialogRef = this.dialog.open(RatingDialogComponent, {
+            data: {
+                trail: this.trail
+            }
+        });
+    }
 
     ngOnDestroy() {
         this.unsubscribe.next();

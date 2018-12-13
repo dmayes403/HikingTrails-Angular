@@ -36,7 +36,8 @@ import { AppComponent } from './app.component';
     providers: [],
     bootstrap: [AppComponent],
     entryComponents: [
-        ForecastDialogComponent
+        ForecastDialogComponent,
+        RatingDialogComponent
     ]
 })
 export class AppModule { }
