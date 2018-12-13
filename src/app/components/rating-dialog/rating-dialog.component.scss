@@ -3,13 +3,11 @@ h2 {
 }
 
 .trail-rating {
-    max-height: 10px; 
-
     mat-icon {
         max-height: 10px; 
         font-size: 14px;
-        // display: flex;
-        // align-items: center;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 }

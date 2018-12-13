@@ -8,6 +8,7 @@ import { Trail } from '../../interfaces/trail';
     styleUrls: ['./rating-dialog.component.scss']
 })
 export class RatingDialogComponent implements OnInit {
+    starOptions = [1, 2, 3, 4, 5];
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: {

@@ -95,7 +95,8 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
                 weather,
                 date ,
                 location: this.trail.location
-            }
+            },
+            minWidth: '275px'
         });
     }
 
