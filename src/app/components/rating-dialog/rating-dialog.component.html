@@ -15,10 +15,15 @@
         <div fxLayout="column">
             <h3>Your Rating:</h3>
             <div fxFlex="row">
-                <mat-icon *ngFor="let start of starOptions">star_border</mat-icon>
+                <mat-icon (click)="setUserRating(userRating, ia + 1)" style="max-height: 10px; cursor: pointer;" 
+                    *ngFor="let star of getFullStars(userRating); let ia = index">star</mat-icon>
+                <mat-icon (click)="setUserRating(userRating, ib + 1)" style="max-height: 10px; cursor: pointer;" 
+                    *ngFor="let star of getHalfStars(userRating); let ib = index">star_half</mat-icon>
+                <mat-icon (click)="setUserRating(userRating, ic + 1)" style="max-height: 10px; cursor: pointer;" 
+                    *ngFor="let star of getEmptyStars(userRating); let ic = index">star_border</mat-icon>
             </div>
 
-            <textarea matInput style="margin-top: 16px;" cols="30" rows="5"></textarea>
+            <textarea matInput style="margin-top: 8px;" cols="30" rows="5"></textarea>
         </div>
     </div>
 

@@ -9,6 +9,7 @@ import { Trail } from '../../interfaces/trail';
 })
 export class RatingDialogComponent implements OnInit {
     starOptions = [1, 2, 3, 4, 5];
+    userRating = 0;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: {
@@ -20,15 +21,18 @@ export class RatingDialogComponent implements OnInit {
     ngOnInit() {
     }
 
-    getFullStars(trail: Trail) {
-        if (trail) {
-            return new Array(Math.floor(trail.stars));
+    getFullStars(trail: Trail | number) {
+        const starVal = typeof trail === 'number' ? trail : trail.stars;
+        if (starVal !== undefined) {
+            return new Array(Math.floor(starVal));
         }
     }
 
-    getHalfStars(trail: Trail) {
-        if (trail) {
-            if (trail.stars % 1 > .3) {
+    getHalfStars(trail: Trail | number) {
+        const starVal = typeof trail === 'number' ? trail : trail.stars;
+
+        if (starVal) {
+            if (starVal % 1 > .3) {
                 return [1];
             } else {
                 return [];
@@ -36,13 +40,27 @@ export class RatingDialogComponent implements OnInit {
         }
     }
 
-    getEmptyStars(trail: Trail) {
-        if (trail) {
-            const empty = 5 - trail.stars;
+    getEmptyStars(trail: Trail | number) {
+        const starVal = typeof trail === 'number' ? trail : trail.stars;
+
+        if (starVal !== undefined) {
+            const empty = 5 - starVal;
             const emptyArr = new Array(Math.floor(empty));
             const remainder = empty % 1;
             const finalArr = remainder >= .7 ? [...emptyArr, 6] : [...emptyArr];
             return finalArr;
+        }
+    }
+
+    setUserRating(userRating: number, index: number) {
+        console.log(userRating);
+        console.log(index);
+        // this.userRating = index;
+
+        if (index > userRating) {
+            this.userRating = userRating + index;
+        } else {
+            this.userRating = index;
         }
     }
 
