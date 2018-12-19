@@ -1,30 +1,29 @@
-<div class="details-container" fxLayout="column">
-    <div style="text-align: center;">
-        <h2>{{data.trail?.name}}</h2>
-        <div style="height: 20px;">
-            <div fxLayout="row" style="margin: 5px 0px;" fxLayoutAlign="center center" class="trail-rating">
-                <mat-icon style="max-height: 10px;" *ngFor="let star of getFullStars(data.trail)">star</mat-icon>
-                <mat-icon style="max-height: 10px;" *ngFor="let star of getHalfStars(data.trail)">star_half</mat-icon>
-                <mat-icon style="max-height: 10px;" *ngFor="let star of getEmptyStars(data.trail)">star_border</mat-icon>
-                <h5 style="margin-left: 5px; max-height: 10px;" fxLayoutAlign="center center">{{data.trail?.starVotes}} votes</h5>
-            </div>
-        </div>
-        <div style="font-size: 12px;">{{data.trail?.location}}</div>
-        <div style="font-size: 12px;">Difficulty: {{data.trail?.difficulty}}</div>
-
-        <div fxLayout="column">
-            <h3>Your Rating:</h3>
-            <div fxFlex="row">
-                <mat-icon (click)="setUserRating(userRating, ia + 1)" style="max-height: 10px; cursor: pointer;" 
-                    *ngFor="let star of getFullStars(userRating); let ia = index">star</mat-icon>
-                <mat-icon (click)="setUserRating(userRating, ib + 1)" style="max-height: 10px; cursor: pointer;" 
-                    *ngFor="let star of getHalfStars(userRating); let ib = index">star_half</mat-icon>
-                <mat-icon (click)="setUserRating(userRating, ic + 1)" style="max-height: 10px; cursor: pointer;" 
-                    *ngFor="let star of getEmptyStars(userRating); let ic = index">star_border</mat-icon>
-            </div>
-
-            <textarea matInput style="margin-top: 8px;" cols="30" rows="5"></textarea>
+<div style="text-align: center;">
+    <h2>{{data.trail?.name}}</h2>
+    <div style="height: 20px;">
+        <div fxLayout="row" style="margin: 5px 0px;" fxLayoutAlign="center center" class="trail-rating">
+            <mat-icon style="max-height: 10px;" *ngFor="let star of getFullStars(data.trail)">star</mat-icon>
+            <mat-icon style="max-height: 10px;" *ngFor="let star of getHalfStars(data.trail)">star_half</mat-icon>
+            <mat-icon style="max-height: 10px;" *ngFor="let star of getEmptyStars(data.trail)">star_border</mat-icon>
+            <h5 style="margin-left: 5px; max-height: 10px;" fxLayoutAlign="center center">{{data.trail?.starVotes}} votes</h5>
         </div>
     </div>
+    <div style="font-size: 12px;">{{data.trail?.location}}</div>
+    <div style="font-size: 12px;">Difficulty: {{data.trail?.difficulty}}</div>
 
+    <div fxLayout="column" *ngIf="data.showAll">
+        <h3>Your Rating:</h3>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <div *ngFor="let star of starOptions;">
+                <mat-icon *ngIf="star <= userRating" 
+                    (click)="userRating = star" style="cursor: pointer;">star</mat-icon>
+                <mat-icon *ngIf="star > userRating" 
+                    (click)="userRating = star" style="cursor: pointer;">star_border</mat-icon>
+            </div>
+        </div>
+
+        <textarea matInput placeholder="Add a review" cols="30" rows="5"></textarea>
+    </div>
+
+    <h3 style="border-bottom: 1px solid black;">Past Reviews</h3>
 </div>

@@ -14,6 +14,7 @@ export class RatingDialogComponent implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: {
             trail: Trail,
+            showAll: boolean;
         },
         public dialogRef: MatDialogRef<RatingDialogComponent>,
     ) { }
@@ -51,17 +52,4 @@ export class RatingDialogComponent implements OnInit {
             return finalArr;
         }
     }
-
-    setUserRating(userRating: number, index: number) {
-        console.log(userRating);
-        console.log(index);
-        // this.userRating = index;
-
-        if (index > userRating) {
-            this.userRating = userRating + index;
-        } else {
-            this.userRating = index;
-        }
-    }
-
 }

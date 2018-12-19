@@ -100,10 +100,11 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         });
     }
 
-    addRating() {
+    viewRatings(showAll: boolean) {
         const dialogRef = this.dialog.open(RatingDialogComponent, {
             data: {
-                trail: this.trail
+                trail: this.trail,
+                showAll
             }
         });
     }
