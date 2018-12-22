@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { auth } from 'firebase/app';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+    constructor(
+        public afAuth: AngularFireAuth
+    ) { }
+
+    login() {
+        this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then(result => {
+            console.log(result);
+        });
 }

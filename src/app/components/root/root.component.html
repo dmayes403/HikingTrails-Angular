@@ -1,7 +1,13 @@
 <div class="content-container">
-    <mat-toolbar color="primary" (click)="goHome()" style="cursor: pointer;">
-        <img src="../../../assets/mountain-outline.png" alt="" style="max-width: 80px; cursor: pointer;">
-        <h1>HikeAway</h1>
+    <mat-toolbar color="primary" style="cursor: pointer;" fxLayoutAlign="space-between center">
+        <div (click)="goHome()" fxLayout="row">
+            <img src="../../../assets/mountain-outline.png" alt="" 
+                style="max-width: 80px; max-height: 35px; cursor: pointer;">
+            <h1>HikeAway</h1>
+        </div>
+        <div>
+            <h3 (click)="login()">Login</h3>
+        </div>
     </mat-toolbar>
     <mat-progress-bar mode="indeterminate" *ngIf="loadingData | async" style="max-height: 2px;">
     </mat-progress-bar>

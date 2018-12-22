@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-main-root',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class RootComponent implements OnInit {
 
     constructor(
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
@@ -17,6 +19,10 @@ export class RootComponent implements OnInit {
 
     goHome() {
         this.router.navigate(['/home']);
+    }
+
+    login() {
+        this.authService.login();
     }
 
 }
