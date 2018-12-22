@@ -8,13 +8,13 @@ import { ApiService } from './api.service';
 import { ZipLocation } from '../interfaces/zip-location';
 import { Trail } from '../interfaces/trail';
 
-import * as keys from '../../api-keys';
+import { APIKeys } from '../../api-keys';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TrailsService {
-    keys = keys.default;
+    keys = APIKeys;
 
     constructor(
         private apiService: ApiService,

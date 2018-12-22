@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from './api.service';
 
-import * as keys from '../../api-keys';
+import { APIKeys } from '../../api-keys';
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class WeatherService {
-    keys = keys.default;
+    keys = APIKeys;
 
     constructor(
         private apiService: ApiService

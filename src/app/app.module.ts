@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { APIKeys } from '../api-keys';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './app.material';
@@ -14,6 +17,8 @@ import { TrailsListComponent } from './components/trails-list/trails-list.compon
 import { HomeComponent } from './components/home/home.component';
 import { RootComponent } from './components/root/root.component';
 import { AppComponent } from './app.component';
+
+const firebaseConfig = APIKeys.firebaseConfig;
 
 @NgModule({
     declarations: [
@@ -32,6 +37,8 @@ import { AppComponent } from './app.component';
         MaterialModule,
         HttpClientModule,
         ScrollingModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFirestoreModule
     ],
     providers: [],
     bootstrap: [AppComponent],

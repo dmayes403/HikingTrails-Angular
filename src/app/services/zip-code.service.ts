@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 import { ApiService } from './api.service';
 
-import * as keys from '../../api-keys';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { APIKeys } from '../../api-keys';
 import { ZipLocation } from '../interfaces/zip-location';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ZipCodeService {
-    keys = keys.default;
+    keys = APIKeys;
     constructor (
         private apiService: ApiService
     ) { }
