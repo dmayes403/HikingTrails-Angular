@@ -2,17 +2,39 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { auth } from 'firebase/app';
 
+import { from, Observable } from 'rxjs';
+
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+    authState = null;
+
+    get authenticated() {
+        return this.afAuth.auth.currentUser !== null;
+    }
 
     constructor(
         public afAuth: AngularFireAuth
     ) { }
 
     login() {
-        this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider()).then(result => {
+        // from(this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())).subscribe(result => {
+        //     console.log(result);
+        // });
+
+        from(this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())).subscribe(result => {
             console.log(result);
+            this.authState = result;
         });
+    }
+
+    logout() {
+        this.afAuth.auth.signOut();
+    }
+
+    getAuthState(): Observable<any> {
+        return this.afAuth.authState;
+    }
 }
+

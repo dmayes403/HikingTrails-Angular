@@ -8,13 +8,18 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
-
+    authState$;
+    authState;
     constructor(
         private router: Router,
         private authService: AuthService
-    ) { }
+    ) {}
 
     ngOnInit() {
+        this.authState$ = this.authService.getAuthState();
+        this.authState$.subscribe(authState => {
+            console.log(authState);
+        });
     }
 
     goHome() {
@@ -25,4 +30,11 @@ export class RootComponent implements OnInit {
         this.authService.login();
     }
 
+    logout() {
+        this.authService.logout();
+    }
+
+    checkAuth() {
+        console.log(this.authService.authenticated);
+    }
 }

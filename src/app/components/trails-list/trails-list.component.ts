@@ -191,6 +191,16 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         this.router.navigate(['/trail-details', {id: trail.id}]);
     }
 
+    completed(event: MouseEvent, trailId: number) {
+        event.stopPropagation();
+        console.log(trailId);
+    }
+
+    interested(event: MouseEvent, trailId: number) {
+        event.stopPropagation();
+        console.log(trailId);
+    }
+
     ngOnDestroy() {
         this.unsubscribe.next();
         this.unsubscribe.complete();

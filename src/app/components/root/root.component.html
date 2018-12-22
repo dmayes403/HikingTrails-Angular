@@ -5,8 +5,13 @@
                 style="max-width: 80px; max-height: 35px; cursor: pointer;">
             <h1>HikeAway</h1>
         </div>
-        <div>
-            <h3 (click)="login()">Login</h3>
+        <div style="margin-right: 16px;" fxLayout="row">
+            <h3 *ngIf="(authState$ | async) !== null">{{(authState$ | async)?.displayName}}</h3>
+            <span id="hzDivider" *ngIf="(authState$ | async) !== null">&nbsp;{{'|'}}&nbsp;</span>
+            <div class="login">
+                <span (click)="login()" *ngIf="(authState$ | async) === null">Login</span>
+                <span (click)="logout()" *ngIf="(authState$ | async) !== null">Logout</span>
+            </div>
         </div>
     </mat-toolbar>
     <mat-progress-bar mode="indeterminate" *ngIf="loadingData | async" style="max-height: 2px;">

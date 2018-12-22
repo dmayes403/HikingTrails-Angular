@@ -7,6 +7,14 @@ mat-toolbar {
     border-bottom: 3px solid #D4BA9A;
 }
 
-h1, h3 {
+h1, h3, h4 {
     font-family: 'Permanent Marker', cursive;
+}
+
+.login > span {
+    font-size: 14px;
+}
+
+#hzDivider {
+    font-family: 'Roboto';
 }
