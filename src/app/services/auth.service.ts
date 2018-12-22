@@ -14,6 +14,11 @@ export class AuthService {
         return this.afAuth.auth.currentUser !== null;
     }
 
+    get currentUser() {
+        console.log(this.afAuth.authState);
+        return this.afAuth.auth.currentUser;
+    }
+
     constructor(
         public afAuth: AngularFireAuth
     ) { }

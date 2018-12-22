@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { TrailsListComponent } from './components/trails-list/trails-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { TrailDetailsComponent } from './components/trail-details/trail-details.component';
+import { UserResolver } from './guards/user.resolver';
 
 const routes: Routes = [
     {
@@ -12,7 +13,8 @@ const routes: Routes = [
     },
     {
         path: 'trails',
-        component: TrailsListComponent
+        component: TrailsListComponent,
+        resolve: {user: UserResolver}
     },
     {
         path: 'trail-details',

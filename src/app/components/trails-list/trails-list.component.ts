@@ -7,7 +7,10 @@ import * as _ from 'lodash';
 import { TrailsService } from '../../services/trails.service';
 
 import { Trail } from '../../interfaces/trail';
-import { Subject } from 'rxjs';
+import { Subject, combineLatest, of } from 'rxjs';
+import { UserTrailStatusService } from '../../services/user-trail-status.service';
+import { AuthService } from '../../services/auth.service';
+import { TrailStatus } from '../../interfaces/trail-status';
 
 @Component({
     selector: 'app-trails-list',
@@ -28,6 +31,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterType = new FormControl('');
     filterOption = new FormControl('');
     completionRate = 90;
+    trailStatus = [];
 
     ratingOptions = [
         {desc: 'Highest to Lowest', value: 'desc'},
@@ -50,7 +54,9 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     ];
 
     constructor(
+        private userTrailStatusService: UserTrailStatusService,
         private trailsService: TrailsService,
+        private authService: AuthService,
         private route: ActivatedRoute,
         private router: Router,
     ) { }
@@ -60,12 +66,18 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             switchMap(params => {
                 this.zip = params['zip'];
                 this.distance = params['distance'];
-
-                return this.trailsService.getTrailsByZip(this.zip, this.distance);
+                console.log(this.authService.currentUser);
+                return combineLatest(
+                    this.trailsService.getTrailsByZip(this.zip, this.distance),
+                    this.authService.authenticated ? this.userTrailStatusService.getTrailStatusByUserId(this.authService.currentUser.uid) :
+                        of([])
+                );
             }),
-            tap(trails => {
-                this.trails = trails.filter((trail: Trail) => trail.imgSqSmall);
+            tap(data => {
+                console.log(data);
+                this.trails = data[0].filter((trail: Trail) => trail.imgSqSmall);
                 this.currentTrails = this.trails;
+                this.trailStatus = data[1];
                 this.filteredTrails = this.currentTrails.slice(0, 50);
                 for (let i = 1; i <= Math.ceil(this.currentTrails.length / 50); i++) {
                     this.pageArr.push(i);
@@ -77,6 +89,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             takeUntil(this.unsubscribe),
             tap(filterType => {
                 console.log(filterType);
+                console.log(this.authService.authenticated);
                 switch (filterType) {
                     case 'rating':
                         this.filterOptions = this.ratingOptions;

@@ -19,6 +19,7 @@ import { TrailsListComponent } from './components/trails-list/trails-list.compon
 import { HomeComponent } from './components/home/home.component';
 import { RootComponent } from './components/root/root.component';
 import { AppComponent } from './app.component';
+import { UserResolver } from './guards/user.resolver';
 
 const firebaseConfig = APIKeys.firebaseConfig;
 
@@ -44,7 +45,9 @@ const firebaseConfig = APIKeys.firebaseConfig;
         // AngularFireDatabaseModule,
         AngularFireAuthModule
     ],
-    providers: [],
+    providers: [
+        UserResolver
+    ],
     bootstrap: [AppComponent],
     entryComponents: [
         ForecastDialogComponent,
