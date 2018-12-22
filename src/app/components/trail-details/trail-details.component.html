@@ -12,7 +12,7 @@
                         <mat-icon *ngFor="let star of getFullStars(trail)">star</mat-icon>
                         <mat-icon *ngFor="let star of getHalfStars(trail)">star_half</mat-icon>
                         <mat-icon *ngFor="let star of getEmptyStars(trail)">star_border</mat-icon>
-                        <h5 style="margin-left: 5px;" fxLayoutAlign="center center">{{trail?.starVotes}} votes</h5>
+                        <h5 style="margin-left: 5px; cursor: pointer;" fxLayoutAlign="center center">{{trail?.starVotes}} votes</h5>
                     </div>
                     <span (click)="viewRatings(true)" class="add-rating" fxLayoutAlign="center center">Add Rating</span>
                 </div>
