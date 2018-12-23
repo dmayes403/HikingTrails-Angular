@@ -10,7 +10,7 @@ export class UserResolver implements Resolve<any> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        console.log('resolving...');
+        console.log('resolving..');
         return this.authService.getAuthState();
     }
 }
