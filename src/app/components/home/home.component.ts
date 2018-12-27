@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { ApiService } from '../../services/api.service';
 import { TrailsService } from '../../services/trails.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-home',
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
     constructor(
         private apiService: ApiService,
         private trailsService: TrailsService,
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) { }
 
     ngOnInit() {
+        console.log(this.authService.authState);
     }
 
     // getLocationDetails() {

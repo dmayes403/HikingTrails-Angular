@@ -9,12 +9,13 @@ import { UserResolver } from './guards/user.resolver';
 const routes: Routes = [
     {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        // resolve: {user: UserResolver}
     },
     {
         path: 'trails',
         component: TrailsListComponent,
-        resolve: {user: UserResolver}
+        // resolve: {user: UserResolver}
     },
     {
         path: 'trail-details',

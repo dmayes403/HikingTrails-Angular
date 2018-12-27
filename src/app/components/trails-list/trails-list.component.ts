@@ -66,10 +66,12 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             switchMap(params => {
                 this.zip = params['zip'];
                 this.distance = params['distance'];
-                console.log(this.authService.currentUser);
+                return this.authService.getAuthState();
+            }),
+            switchMap(authState => {
                 return combineLatest(
                     this.trailsService.getTrailsByZip(this.zip, this.distance),
-                    this.authService.authenticated ? this.userTrailStatusService.getTrailStatusByUserId(this.authService.currentUser.uid) :
+                    authState ? this.userTrailStatusService.getTrailStatusByUserId(authState.uid) :
                         of([])
                 );
             }),

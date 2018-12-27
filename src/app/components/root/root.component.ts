@@ -17,9 +17,6 @@ export class RootComponent implements OnInit {
 
     ngOnInit() {
         this.authState$ = this.authService.getAuthState();
-        this.authState$.subscribe(authState => {
-            console.log(authState);
-        });
     }
 
     goHome() {
@@ -32,9 +29,5 @@ export class RootComponent implements OnInit {
 
     logout() {
         this.authService.logout();
-    }
-
-    checkAuth() {
-        console.log(this.authService.authenticated);
     }
 }

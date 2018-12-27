@@ -1,16 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class UserResolver implements Resolve<any> {
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        public afAuth: AngularFireAuth
     ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        console.log('resolving...');
-        return this.authService.getAuthState();
+        const auth$ = this.afAuth.authState.pipe(
+            switchMap(authState => {
+                this.authService.authState = authState;
+                return of(authState);
+            })
+        );
+
+        console.log(auth$);
+        if (auth$) {
+            return of(auth$);
+        }
     }
 }
