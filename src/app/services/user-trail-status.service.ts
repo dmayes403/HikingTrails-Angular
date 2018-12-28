@@ -18,8 +18,8 @@ export class UserTrailStatusService {
             map(documents => {
                 let userTrailStatus;
                 documents.forEach(trailStatus => {
-                    console.log(trailStatus);
                     userTrailStatus = trailStatus.data();
+                    userTrailStatus.recordId = trailStatus.ref.id;
                 });
 
                 return userTrailStatus;
@@ -28,8 +28,11 @@ export class UserTrailStatusService {
     }
 
     createStatusRecord(trailStatus: TrailStatus) {
-        console.log('creating record');
-        console.log(trailStatus.uid);
         this.afs.collection('user-trail-status').add(trailStatus);
+    }
+
+    updateRecord(trailStatus: TrailStatus) {
+        const oldRecord = this.afs.collection('user-trail-status').doc(trailStatus.recordId);
+        oldRecord.update({trails: trailStatus.trails});
     }
 }

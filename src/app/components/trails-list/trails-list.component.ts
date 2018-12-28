@@ -77,7 +77,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                         of([])
                 );
             }),
-            tap(data => {
+            tap((data: [Trail[], TrailStatus]) => {
                 console.log(data);
                 this.trails = data[0].filter((trail: Trail) => trail.imgSqSmall);
                 this.currentTrails = this.trails;
@@ -215,23 +215,43 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     completed(event: MouseEvent, trailId: number) {
         event.stopPropagation();
         console.log(trailId);
+        console.log(this.trailStatus);
         if (this.trailStatus) {
             let foundIndex;
-            const foundStatus = _.find(this.trailStatus.trails, (trail, index) => {
+            const foundTrailStatus = _.find(this.trailStatus.trails, (trail, index) => {
                 if (trail.trailId === trailId) {
                     foundIndex = index;
                     return trail;
                 }
             });
 
-            if (foundStatus) {
-                if (foundStatus.status === 'completed') {
+            console.log(foundTrailStatus);
+            console.log(foundIndex);
+
+            if (foundTrailStatus) {
+                console.log('1');
+                if (foundTrailStatus.status === 'completed') {
+                    console.log('2');
+                    console.log(this.trailStatus.trails);
                     this.trailStatus.trails.splice(foundIndex, 1);
+                    console.log(this.trailStatus.trails);
                 } else {
-                    foundStatus.status = 'completed';
-                    foundStatus.dateCompleted = new Date();
+                    console.log('3');
+                    foundTrailStatus.status = 'completed';
+                    foundTrailStatus.dateCompleted = new Date();
+                    this.trailStatus.trails[foundIndex] = foundTrailStatus;
                 }
+            } else {
+                this.trailStatus.trails.push({
+                    trailId: trailId,
+                    status: 'completed',
+                    dateCompleted: new Date()
+                });
             }
+
+            console.log(this.trailStatus);
+
+            this.userTrailStatusService.updateRecord(this.trailStatus);
         } else {
             const trail = {
                 trailId: trailId,
