@@ -34,11 +34,24 @@
                             <mat-icon *ngFor="let star of getEmptyStars(trail)">star_border</mat-icon>
                         </div>
                         <div fxLayout="row">
-                            <div fxLayout="row" (click)="completed($event, trail.id)">
+                            <div fxLayout="row" (click)="changeStatus($event, trail.id, 'completed')"
+                                *ngIf="!statusAndIdExists(trail.id, 'completed')">
                                 <span style="margin-right: 5px;">Completed</span>
                                 <mat-icon style="margin-right: 25px;" svgIcon="outline_circle"></mat-icon>
                             </div>
-                            <div fxLayout="row" (click)="interested($event, trail.id)">
+                            <div fxLayout="row" (click)="changeStatus($event, trail.id, 'completed')"
+                                *ngIf="statusAndIdExists(trail.id, 'completed')">
+                                <span style="margin-right: 5px;">Completed</span>
+                                <mat-icon style="margin-right: 25px;" svgIcon="outline_circle_check"></mat-icon>
+                            </div>
+
+                            <div fxLayout="row" (click)="changeStatus($event, trail.id, 'interested')"
+                                *ngIf="!statusAndIdExists(trail.id, 'interested')">
+                                <span style="margin-right: 5px;">Interested</span>
+                                <mat-icon style="margin-right: 25px;" svgIcon="outline_circle"></mat-icon>
+                            </div>
+                            <div fxLayout="row" (click)="changeStatus($event, trail.id, 'interested')"
+                                *ngIf="statusAndIdExists(trail.id, 'interested')">
                                 <span style="margin-right: 5px;">Interested</span>
                                 <mat-icon style="margin-right: 25px;" svgIcon="outline_circle_check"></mat-icon>
                             </div>

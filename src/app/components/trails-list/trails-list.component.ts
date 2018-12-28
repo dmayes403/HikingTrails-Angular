@@ -30,7 +30,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterOptions = [];
     filterType = new FormControl('');
     filterOption = new FormControl('');
-    completionRate = 90;
+    completionRate = 0;
     trailStatus: TrailStatus;
     user;
 
@@ -78,7 +78,6 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                 );
             }),
             tap((data: [Trail[], TrailStatus]) => {
-                console.log(data);
                 this.trails = data[0].filter((trail: Trail) => trail.imgSqSmall);
                 this.currentTrails = this.trails;
                 this.trailStatus = data[1];
@@ -86,6 +85,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                 for (let i = 1; i <= Math.ceil(this.currentTrails.length / 50); i++) {
                     this.pageArr.push(i);
                 }
+                this.countCompletedInRange(this.trails, this.trailStatus);
             })
         ).subscribe();
 
@@ -172,7 +172,19 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     }
 
     addRecord() {
-        this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: []})
+        this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: []});
+    }
+
+    countCompletedInRange(searchedTrails: Trail[], trailsStatus: TrailStatus) {
+        let count = 0;
+        searchedTrails.forEach(searchedTrail => {
+            trailsStatus.trails.forEach(trailStatus => {
+                if (trailStatus.trailId === searchedTrail.id && trailStatus.status === 'completed') {
+                    count += 1;
+                }
+            });
+        });
+        this.completionRate = +((count / this.trails.length) * 100).toFixed(2);
     }
 
     getFullStars(trail: Trail) {
@@ -212,10 +224,8 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         this.router.navigate(['/trail-details', {id: trail.id}]);
     }
 
-    completed(event: MouseEvent, trailId: number) {
+    changeStatus(event: MouseEvent, trailId: number, status: string) {
         event.stopPropagation();
-        console.log(trailId);
-        console.log(this.trailStatus);
         if (this.trailStatus) {
             let foundIndex;
             const foundTrailStatus = _.find(this.trailStatus.trails, (trail, index) => {
@@ -225,46 +235,57 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                 }
             });
 
-            console.log(foundTrailStatus);
-            console.log(foundIndex);
-
             if (foundTrailStatus) {
-                console.log('1');
-                if (foundTrailStatus.status === 'completed') {
-                    console.log('2');
-                    console.log(this.trailStatus.trails);
+                if (foundTrailStatus.status === status) {
                     this.trailStatus.trails.splice(foundIndex, 1);
-                    console.log(this.trailStatus.trails);
                 } else {
-                    console.log('3');
-                    foundTrailStatus.status = 'completed';
+                    foundTrailStatus.status = status;
                     foundTrailStatus.dateCompleted = new Date();
                     this.trailStatus.trails[foundIndex] = foundTrailStatus;
                 }
             } else {
-                this.trailStatus.trails.push({
+                const trail = {
                     trailId: trailId,
-                    status: 'completed',
-                    dateCompleted: new Date()
-                });
-            }
+                    status: status,
+                };
 
-            console.log(this.trailStatus);
+                if (status === 'completed') {
+                    trail['dateCompleted'] = new Date();
+                }
+
+                this.trailStatus.trails.push(trail);
+            }
 
             this.userTrailStatusService.updateRecord(this.trailStatus);
         } else {
             const trail = {
                 trailId: trailId,
-                status: 'completed',
-                dateCompleted: new Date()
+                status: status,
             };
+
+            if (status === 'completed') {
+                trail['dateCompleted'] = new Date();
+            }
             this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: [trail]});
+        }
+
+        if (status === 'completed') {
+            this.countCompletedInRange(this.trails, this.trailStatus);
         }
     }
 
-    interested(event: MouseEvent, trailId: number) {
-        event.stopPropagation();
-        console.log(trailId);
+    statusAndIdExists(trailId: number, status: string) {
+        const foundTrailStatus = _.find(this.trailStatus.trails, (trail, index) => {
+            if (trail.trailId === trailId && trail.status === status) {
+                return trail;
+            }
+        });
+
+        if (foundTrailStatus) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     ngOnDestroy() {

@@ -4,6 +4,6 @@ export interface TrailStatus {
     trails: {
         trailId: number;
         status: string;
-        dateCompleted: Date;
+        dateCompleted?: Date;
     }[];
 }
