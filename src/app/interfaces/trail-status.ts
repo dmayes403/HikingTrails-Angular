@@ -1,5 +1,8 @@
 export interface TrailStatus {
-    trailId: number;
-    status: string;
-    dateCompleted: Date;
+    uid: string;
+    trails: {
+        trailId: number;
+        status: string;
+        dateCompleted: Date;
+    }[];
 }

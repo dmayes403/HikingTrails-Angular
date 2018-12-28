@@ -31,7 +31,8 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterType = new FormControl('');
     filterOption = new FormControl('');
     completionRate = 90;
-    trailStatus = [];
+    trailStatus: TrailStatus;
+    user;
 
     ratingOptions = [
         {desc: 'Highest to Lowest', value: 'desc'},
@@ -69,6 +70,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                 return this.authService.getAuthState();
             }),
             switchMap(authState => {
+                this.user = authState;
                 return combineLatest(
                     this.trailsService.getTrailsByZip(this.zip, this.distance),
                     authState ? this.userTrailStatusService.getTrailStatusByUserId(authState.uid) :
@@ -169,6 +171,10 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         ).subscribe();
     }
 
+    addRecord() {
+        this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: []})
+    }
+
     getFullStars(trail: Trail) {
         return new Array(Math.floor(trail.stars));
     }
@@ -209,6 +215,31 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     completed(event: MouseEvent, trailId: number) {
         event.stopPropagation();
         console.log(trailId);
+        if (this.trailStatus) {
+            let foundIndex;
+            const foundStatus = _.find(this.trailStatus.trails, (trail, index) => {
+                if (trail.trailId === trailId) {
+                    foundIndex = index;
+                    return trail;
+                }
+            });
+
+            if (foundStatus) {
+                if (foundStatus.status === 'completed') {
+                    this.trailStatus.trails.splice(foundIndex, 1);
+                } else {
+                    foundStatus.status = 'completed';
+                    foundStatus.dateCompleted = new Date();
+                }
+            }
+        } else {
+            const trail = {
+                trailId: trailId,
+                status: 'completed',
+                dateCompleted: new Date()
+            };
+            this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: [trail]});
+        }
     }
 
     interested(event: MouseEvent, trailId: number) {

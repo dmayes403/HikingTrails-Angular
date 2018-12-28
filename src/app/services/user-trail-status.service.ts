@@ -13,15 +13,23 @@ export class UserTrailStatusService {
         private afs: AngularFirestore
     ) { }
 
-    getTrailStatusByUserId(userId: string): Observable<TrailStatus[]> {
-        return from(this.afs.collection('user-trail-status', ref => ref.where('uid', '==', '123')).get()).pipe(
+    getTrailStatusByUserId(userId: string): Observable<TrailStatus> {
+        return from(this.afs.collection('user-trail-status', ref => ref.where('uid', '==', userId)).get()).pipe(
             map(documents => {
                 let userTrailStatus;
                 documents.forEach(trailStatus => {
-                    userTrailStatus = trailStatus.data().trails;
+                    console.log(trailStatus);
+                    userTrailStatus = trailStatus.data();
                 });
+
                 return userTrailStatus;
             })
         );
+    }
+
+    createStatusRecord(trailStatus: TrailStatus) {
+        console.log('creating record');
+        console.log(trailStatus.uid);
+        this.afs.collection('user-trail-status').add(trailStatus);
     }
 }
