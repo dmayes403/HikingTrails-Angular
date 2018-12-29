@@ -31,6 +31,8 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     filterType = new FormControl('');
     filterOption = new FormControl('');
     completionRate = 0;
+    completedCount = 0;
+    interestedCount = 0;
     trailStatus: TrailStatus;
     user;
 
@@ -176,15 +178,21 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     }
 
     countCompletedInRange(searchedTrails: Trail[], trailsStatus: TrailStatus) {
-        let count = 0;
+        this.completedCount = 0;
+        this.interestedCount = 0;
+
         searchedTrails.forEach(searchedTrail => {
             trailsStatus.trails.forEach(trailStatus => {
-                if (trailStatus.trailId === searchedTrail.id && trailStatus.status === 'completed') {
-                    count += 1;
+                if (trailStatus.trailId === searchedTrail.id) {
+                    if (trailStatus.status === 'completed') {
+                        this.completedCount += 1;
+                    } else {
+                        this.interestedCount += 1;
+                    }
                 }
             });
         });
-        this.completionRate = +((count / this.trails.length) * 100).toFixed(2);
+        this.completionRate = +((this.completedCount / this.trails.length) * 100).toFixed(2);
     }
 
     getFullStars(trail: Trail) {
@@ -269,9 +277,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             this.userTrailStatusService.createStatusRecord({uid: this.user.uid, trails: [trail]});
         }
 
-        if (status === 'completed') {
-            this.countCompletedInRange(this.trails, this.trailStatus);
-        }
+        this.countCompletedInRange(this.trails, this.trailStatus);
     }
 
     statusAndIdExists(trailId: number, status: string) {
@@ -286,6 +292,15 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         } else {
             return false;
         }
+    }
+
+    CRDigits(CR: number) {
+        if (CR === 0 || CR === 1 || CR === 2 || CR === 3 || CR === 4 ||
+            CR === 5 || CR === 6 || CR === 7 || CR === 8 || CR === 9) {
+                return true;
+            } else {
+                return false;
+            }
     }
 
     ngOnDestroy() {

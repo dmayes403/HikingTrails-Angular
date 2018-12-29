@@ -17,5 +17,14 @@
     <mat-progress-bar mode="indeterminate" *ngIf="loadingData | async" style="max-height: 2px;">
     </mat-progress-bar>
 
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
+    <mat-sidenav-container style="height: 100%; width: 100%;">
+        <mat-sidenav>
+
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

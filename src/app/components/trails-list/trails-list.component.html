@@ -87,7 +87,10 @@
                         color="accent"
                         [value]="completionRate">
                     </mat-progress-spinner>
-                    <h2 class="completion-rate">{{completionRate}}%</h2>
+                    <h2 class="completion-rate"
+                        [ngStyle]="{'left': CRDigits(completionRate) ? '60px' : '40px'}">
+                        {{completionRate}}%
+                    </h2>
                 </div>
     
                 <div class="spinner-container-underlay">
@@ -104,15 +107,15 @@
             <div fxLayout="row" fxLayoutAlign="space-between" 
                 style="font-size: 24px; margin: 20px; margin-top: 65px;">
                 <div style="text-align: center;">
-                    <div class="num-box">56</div>
+                    <div class="num-box">{{completedCount + interestedCount}}</div>
                     <div style="font-size: 18px;">Total</div>
                 </div>
                 <div style="text-align: center;">
-                    <div class="num-box">25</div>
+                    <div class="num-box">{{completedCount}}</div>
                     <div style="font-size: 18px;">Completed</div>
                 </div>
                 <div style="text-align: center;">
-                    <div class="num-box">14</div>
+                    <div class="num-box">{{interestedCount}}</div>
                     <div style="font-size: 18px;">Interested</div>
                 </div>
             </div>
