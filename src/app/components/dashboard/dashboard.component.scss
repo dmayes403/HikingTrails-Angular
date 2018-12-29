@@ -1,3 +1,5 @@
+@import '../../../styles/common.scss';
+
 .main-container {
     background-image: url('../../../assets/home_landscape.jpg');
     background-size: cover;
@@ -17,7 +19,14 @@
 }
 
 .tab-container {
-    max-width: 250px;
+    max-width: 235px;
+    padding: 16px;
+    border-radius: 5px;
+    border: 2px solid $primary-spectrum;
+    height: calc(100% - 36px);
+    // overflow: auto;
+    overflow: hidden;
+    scrollbar-track-color: rgba(212, 186, 154, .8);
 }
 
 mat-tab-label {
@@ -28,6 +37,42 @@ mat-tab-label {
     width: 90px !important;
 }
 
-:host ::ng-deep .mat-tab-label-container { 
-    width: 90px !important;
+/deep/.mat-tab-label, /deep/.mat-tab-label-active{
+    min-width: 0!important;
+    padding: 0px 20px 0px 20px !important;
+    margin: 0px!important;
+}
+
+.trail-row {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 225px;
+    display: block;
+
+    &.location {
+        font-size: 12px;
+    }
+}
+
+.name {
+    padding-top: 8px;
+}
+
+.location {
+    padding-bottom: 8px;
+}
+
+.trail-row-cont:hover {
+    background-color: rgba(145,120,100, .2);
+    cursor: pointer;
+}
+
+.trail-row-cont {
+    overflow: hidden;
+}
+
+.inner-container {
+    height: calc(100% - 100px);
+    overflow: auto;
 }

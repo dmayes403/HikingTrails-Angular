@@ -1,9 +1,25 @@
 <div class="main-container">
     <div class="content-container">
-        <div class="tab-container">
+        <div class="tab-container mat-elevation-z4">
             <mat-tab-group>
-                <mat-tab label="Completed"> Content 1 </mat-tab>
-                <mat-tab label="Interested"> Content 2 </mat-tab>
+                <mat-tab label="Completed">
+                    <div class="inner-container">
+                        <div *ngFor="let trail of completedTrails" fxLayout="column" 
+                            class="trail-row-cont" [matTooltip]="trail.name + ' - ' + trail.location">
+                            <div class="trail-row name">{{trail.name}}</div>
+                            <div class="trail-row location">{{trail.location}}</div>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Interested">
+                    <div *ngFor="let trail of interestedTrails" fxLayout="column" 
+                        class="trail-row-cont" [matTooltip]="trail.name + ' - ' + trail.location">
+                        <div class="trail-row name">{{trail.name}}</div>
+                        <div class="trail-row location">{{trail.location}}</div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </mat-tab>
             </mat-tab-group>
         </div>
     </div>
