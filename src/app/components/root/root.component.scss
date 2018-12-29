@@ -1,3 +1,5 @@
+@import '../../../styles/common.scss';
+
 .content-container {
     height: 100%;
     overflow: hidden;
@@ -17,4 +19,17 @@ h1, h3, h4 {
 
 #hzDivider {
     font-family: 'Roboto';
+}
+
+.side-nav {
+    width: 200px;
+    background-color: $accent-spectrum;
+}
+
+.links {
+    mat-list-item:hover {
+        // background-color: rgba(212, 186, 154, .2);
+        background-color: rgba(145,120,100, .2);
+        cursor: pointer;
+    }
 }

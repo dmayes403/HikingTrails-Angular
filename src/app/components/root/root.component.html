@@ -6,7 +6,9 @@
             <h1>HikeAway</h1>
         </div>
         <div style="margin-right: 16px;" fxLayout="row">
-            <h3 *ngIf="(authState$ | async) !== null">{{(authState$ | async)?.displayName}}</h3>
+            <h3 *ngIf="(authState$ | async) !== null" (click)="sidenav.toggle()">
+                {{(authState$ | async)?.displayName}}
+            </h3>
             <span id="hzDivider" *ngIf="(authState$ | async) !== null">&nbsp;{{'|'}}&nbsp;</span>
             <div class="login">
                 <span (click)="login()" *ngIf="(authState$ | async) === null">Login</span>
@@ -18,9 +20,14 @@
     </mat-progress-bar>
 
     <!-- <router-outlet></router-outlet> -->
-    <mat-sidenav-container style="height: 100%; width: 100%;">
-        <mat-sidenav>
-
+    <mat-sidenav-container style="height: calc(100% - 64px); width: 100%;">
+        <mat-sidenav mode="over" #sidenav [opened]="false" class="side-nav"
+            position="end">
+            <mat-list class="links">
+                <mat-list-item (click)="goHome()">Home</mat-list-item>
+                <mat-list-item>Dashboard</mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
         </mat-sidenav>
 
         <mat-sidenav-content>

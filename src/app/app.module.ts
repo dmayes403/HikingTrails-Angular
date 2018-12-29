@@ -20,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RootComponent } from './components/root/root.component';
 import { AppComponent } from './app.component';
 import { UserResolver } from './guards/user.resolver';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const firebaseConfig = APIKeys.firebaseConfig;
 
@@ -32,6 +33,7 @@ const firebaseConfig = APIKeys.firebaseConfig;
         TrailDetailsComponent,
         ForecastDialogComponent,
         RatingDialogComponent,
+        DashboardComponent,
     ],
     imports: [
         BrowserModule,
