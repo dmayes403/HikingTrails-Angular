@@ -16,6 +16,7 @@ import {
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
+    MatTabsModule,
 } from '@angular/material';
 
 
@@ -42,6 +43,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatSidenavModule,
         MatListModule,
         MatDividerModule,
+        MatTabsModule,
     ],
     exports: [
         CommonModule,
@@ -62,6 +64,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatSidenavModule,
         MatListModule,
         MatDividerModule,
+        MatTabsModule,
     ],
 })
 

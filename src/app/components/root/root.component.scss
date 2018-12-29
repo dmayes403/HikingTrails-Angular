@@ -28,8 +28,12 @@ h1, h3, h4 {
 
 .links {
     mat-list-item:hover {
-        // background-color: rgba(212, 186, 154, .2);
         background-color: rgba(145,120,100, .2);
+        outline: none;
         cursor: pointer;
+    }
+
+    mat-list-item:focus {
+        outline: none;
     }
 }

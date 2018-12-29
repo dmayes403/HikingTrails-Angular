@@ -34,7 +34,7 @@ export class TrailsListComponent implements OnInit, OnDestroy {
     completedCount = 0;
     interestedCount = 0;
     trailStatus: TrailStatus;
-    user;
+    user: any;
 
     ratingOptions = [
         {desc: 'Highest to Lowest', value: 'desc'},

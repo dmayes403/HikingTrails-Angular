@@ -35,4 +35,10 @@ export class TrailsService {
             map((response: {success: number, trails: Trail[]}) => response.trails)
         );
     }
+
+    getTrailsByIds(trailIds: string[]): Observable<Trail[]> {
+        return this.apiService.get(`https://www.hikingproject.com/data/get-trails-by-id?ids=${trailIds}&key=${this.keys.hikingAPI}`, undefined).pipe(
+            map((response: {success: number, trails: Trail[]}) => response.trails)
+        );
+    }
 }

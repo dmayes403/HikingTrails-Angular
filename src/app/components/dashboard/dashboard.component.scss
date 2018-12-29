@@ -1,0 +1,33 @@
+.main-container {
+    background-image: url('../../../assets/home_landscape.jpg');
+    background-size: cover;
+    height: 100%;
+    background-position: bottom;
+    position: relative;
+}
+
+.content-container {
+    width: 70%;
+    margin: auto;
+    padding: 16px;
+    height: 100%;
+    background-color: rgba(212, 186, 154, .8);
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.tab-container {
+    max-width: 250px;
+}
+
+mat-tab-label {
+    padding: 0px;
+}
+
+.mat-ink-bar {
+    width: 90px !important;
+}
+
+:host ::ng-deep .mat-tab-label-container { 
+    width: 90px !important;
+}
