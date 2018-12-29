@@ -24,9 +24,7 @@
     border-radius: 5px;
     border: 2px solid $primary-spectrum;
     height: calc(100% - 36px);
-    // overflow: auto;
     overflow: hidden;
-    scrollbar-track-color: rgba(212, 186, 154, .8);
 }
 
 mat-tab-label {
@@ -75,4 +73,14 @@ mat-tab-label {
 .inner-container {
     height: calc(100% - 100px);
     overflow: auto;
+}
+
+.data-container {
+    margin-left: 16px;
+    // border: 2px solid black;
+
+    div:not(:nth-child(2)) {
+        border-top: 1px solid $primary-spectrum;
+        border-bottom: 1px solid $primary-spectrum;
+    }
 }
