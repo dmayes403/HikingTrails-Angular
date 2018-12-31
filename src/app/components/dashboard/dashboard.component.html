@@ -24,15 +24,28 @@
         </div>
 
         <div class="data-container" fxFlex fxLayout="column">
-            <div fxFlex="33" class="sub-data">
+            <div fxFlex="33" class="sub-data all-time">
                 <h3>All-Time</h3>
-                <div fxLayout="row">
-                    <div>
-                        <h2>{{completedTrails.length ? completedTrails.length : 0}}</h2>
+                <div fxLayout="row" fxLayoutAlign="space-around">
+                    <div class="all-time-data">
+                        <img src="../../../assets/roman_crown.svg">
+                        <h2 [ngStyle]="{'left': completedTrails.length + interestedTrails.length < 10 ? '30px' : '25px'}">
+                            {{completedTrails.length ? completedTrails.length + interestedTrails.length : 0}}
+                        </h2>
+                        <h6>Total</h6>
+                    </div>
+                    <div class="all-time-data">
+                        <img src="../../../assets/roman_crown.svg">
+                        <h2 [ngStyle]="{'left': completedTrails.length < 10 ? '30px' : '25px'}">
+                            {{completedTrails.length ? completedTrails.length : 0}}
+                        </h2>
                         <h6>Completed</h6>
                     </div>
-                    <div>
-                        <h2>{{interestedTrails.length ? interestedTrails.length : 0}}</h2>
+                    <div class="all-time-data">
+                        <img src="../../../assets/roman_crown.svg">
+                        <h2 [ngStyle]="{'left': interestedTrails.length < 10 ? '30px' : '25px'}">
+                            {{interestedTrails.length ? interestedTrails.length : 0}}
+                        </h2>
                         <h6>Interested</h6>
                     </div>
                 </div>

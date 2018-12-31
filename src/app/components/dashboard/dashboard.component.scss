@@ -83,3 +83,27 @@ mat-tab-label {
         border-bottom: 1px solid $primary-spectrum;
     }
 }
+
+img {
+    max-width: 75px;
+}
+
+.data-container {
+    h2, h6 {
+        margin: 0px;
+    }
+}
+
+.all-time {
+    text-align: center;
+}
+
+.all-time-data {
+    position: relative;
+
+    h2 {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+    }
+}
