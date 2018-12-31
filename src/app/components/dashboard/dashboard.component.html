@@ -24,9 +24,21 @@
         </div>
 
         <div class="data-container" fxFlex fxLayout="column">
-            <div fxFlex="33"></div>
-            <div fxFlex="33"></div>
-            <div fxFlex="33"></div>
+            <div fxFlex="33" class="sub-data">
+                <h3>All-Time</h3>
+                <div fxLayout="row">
+                    <div>
+                        <h2>{{completedTrails.length ? completedTrails.length : 0}}</h2>
+                        <h6>Completed</h6>
+                    </div>
+                    <div>
+                        <h2>{{interestedTrails.length ? interestedTrails.length : 0}}</h2>
+                        <h6>Interested</h6>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex="33" class="sub-data"></div>
+            <div fxFlex="33" class="sub-data"></div>
         </div>
     </div>
 </div>

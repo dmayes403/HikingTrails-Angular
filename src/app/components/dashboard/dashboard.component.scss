@@ -77,9 +77,8 @@ mat-tab-label {
 
 .data-container {
     margin-left: 16px;
-    // border: 2px solid black;
 
-    div:not(:nth-child(2)) {
+    .sub-data:not(:nth-child(2)) {
         border-top: 1px solid $primary-spectrum;
         border-bottom: 1px solid $primary-spectrum;
     }
