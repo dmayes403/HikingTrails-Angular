@@ -78,14 +78,17 @@ mat-tab-label {
 .data-container {
     margin-left: 16px;
 
-    .sub-data:not(:nth-child(2)) {
+    .sub-data {
         border-top: 1px solid $primary-spectrum;
+    }
+
+    .sub-data:last-child {
         border-bottom: 1px solid $primary-spectrum;
     }
 }
 
 img {
-    max-width: 75px;
+    max-width: 90px;
 }
 
 .data-container {
@@ -94,7 +97,7 @@ img {
     }
 }
 
-.all-time {
+.all-time, .current-year, .current-month {
     text-align: center;
 }
 
@@ -104,6 +107,9 @@ img {
     h2 {
         position: absolute;
         top: 10px;
-        left: 30px;
     }
+}
+
+h4, h3 {
+    margin: 8px 0px;
 }
