@@ -101,6 +101,13 @@ img {
     text-align: center;
 }
 
+.current-month, .current-year {
+    img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
 .all-time-data {
     position: relative;
 
@@ -112,4 +119,12 @@ img {
 
 h4, h3 {
     margin: 8px 0px;
+}
+
+h5 {
+    margin: 0px;
+}
+
+.vertical-div {
+    border: 1px solid black;
 }

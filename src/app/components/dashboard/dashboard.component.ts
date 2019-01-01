@@ -51,19 +51,18 @@ export class DashboardComponent implements OnInit {
                 return this.userTrailStatusService.getTrailStatusByUserId(this.user.uid);
             }),
             switchMap((trailStatus: TrailStatus) => {
-                console.log(trailStatus);
                 const completedIds = [];
                 const interestedIds = [];
                 trailStatus.trails.forEach(trail => {
                     if (trail.status === 'completed') {
                         completedIds.push(trail.trailId);
 
-                        if (new Date(trail.dateCompleted) >= this.firstDoM) {
+                        if (trail.dateCompleted['seconds'] >= this.firstDoM.getUTCDate()) {
                             this.monthIds.push(trail.trailId);
                             this.monthCompletion++;
                         }
 
-                        if (new Date(trail.dateCompleted) >= this.firstDoY) {
+                        if (trail.dateCompleted['seconds'] >= this.firstDoY.getUTCDate()) {
                             this.yearIds.push(trail.trailId);
                             this.yearCompletion++;
                         }
@@ -78,7 +77,6 @@ export class DashboardComponent implements OnInit {
                 );
             }),
             tap((data: [Trail[], Trail[]]) => {
-                console.log(data);
                 this.completedTrails = data[0];
                 this.interestedTrails = data[1];
 
@@ -120,7 +118,6 @@ export class DashboardComponent implements OnInit {
                         this.ATHighest = trail.ascent;
                     }
                 });
-                console.log(this.ATMileage);
             })
         ).subscribe();
     }
