@@ -66,13 +66,12 @@
                 <h4>{{currentDate | date: 'MMMM'}} Highlights</h4>
                 <h5>Trails Completed: {{monthCompletion}}</h5>
                 <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top: 8px; text-align: left;">
-                    <div>
+                    <div style="padding-top: 5px;">
                         <h5>Total Mileage: {{monthMileage | number : '1.2-2'}}</h5>
                         <h5>Total Ascent: {{monthAscent}} ft.</h5>
                     </div>
                     <img src="../../../assets/roman_crown.svg">
-                    <!-- <mat-divider [vertical]="true" class="vertical-div"></mat-divider> -->
-                    <div>
+                    <div style="padding-top: 5px;">
                         <h5>Longest: {{monthLongest | number : '1.2-2'}} miles</h5>
                         <h5>Highest Ascent: {{monthHighest}} ft.</h5>
                     </div>
@@ -82,12 +81,12 @@
                 <h4>{{currentDate | date: 'y'}} Highlights</h4>
                 <h5>Trails Completed: {{yearCompletion}}</h5>
                 <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top: 8px;  text-align: left;">
-                    <div>
+                    <div style="padding-top: 5px;">
                         <h5>Total Mileage: {{yearMileage | number : '1.2-2'}}</h5>
                         <h5>Total Ascent: {{yearAscent}} ft.</h5>
                     </div>
-                    <mat-divider [vertical]="true" class="vertical-div"></mat-divider>
-                    <div>
+                    <img src="../../../assets/roman_crown.svg">
+                    <div style="padding-top: 5px;">
                         <h5>Longest: {{yearLongest | number : '1.2-2'}} miles</h5>
                         <h5>Highest Ascent: {{yearHighest}} ft.</h5>
                     </div>
