@@ -4,7 +4,7 @@
             <mat-tab-group>
                 <mat-tab label="Completed">
                     <div class="inner-container">
-                        <div *ngFor="let trail of completedTrails" fxLayout="column" 
+                        <div *ngFor="let trail of completedTrails" fxLayout="column" (click)="goToTrailDetails(trail)"
                             class="trail-row-cont" [matTooltip]="trail.name + ' - ' + trail.location">
                             <div class="trail-row name">{{trail.name}}</div>
                             <div class="trail-row location">{{trail.location}}</div>
@@ -13,7 +13,7 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Interested">
-                    <div *ngFor="let trail of interestedTrails" fxLayout="column" 
+                    <div *ngFor="let trail of interestedTrails" fxLayout="column" (click)="goToTrailDetails(trail)"
                         class="trail-row-cont" [matTooltip]="trail.name + ' - ' + trail.location">
                         <div class="trail-row name">{{trail.name}}</div>
                         <div class="trail-row location">{{trail.location}}</div>

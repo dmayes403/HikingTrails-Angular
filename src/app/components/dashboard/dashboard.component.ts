@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 
 import { UserTrailStatusService } from '../../services/user-trail-status.service';
-import { AuthService } from '../../services/auth.service';
-import { TrailStatus } from '../../interfaces/trail-status';
 import { TrailsService } from '../../services/trails.service';
-import { combineLatest } from 'rxjs';
+import { TrailStatus } from '../../interfaces/trail-status';
+import { AuthService } from '../../services/auth.service';
+
 import { Trail } from '../../interfaces/trail';
 
 @Component({
@@ -41,6 +43,7 @@ export class DashboardComponent implements OnInit {
         private userTrailStatusService: UserTrailStatusService,
         private trailService: TrailsService,
         private authService: AuthService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -120,6 +123,10 @@ export class DashboardComponent implements OnInit {
                 });
             })
         ).subscribe();
+    }
+
+    goToTrailDetails(trail: Trail) {
+        this.router.navigate(['/trail-details', {id: trail.id}]);
     }
 
 }
