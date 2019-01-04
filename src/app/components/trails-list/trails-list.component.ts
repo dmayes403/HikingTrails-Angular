@@ -81,8 +81,24 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             }),
             tap((data: [Trail[], TrailStatus]) => {
                 this.trails = data[0].filter((trail: Trail) => trail.imgSqSmall);
-                this.currentTrails = this.trails;
                 this.trailStatus = data[1];
+
+                // this.trails.forEach(trail => {
+                //     delete trail._completed;
+                //     delete trail._interested;
+
+                //     this.trailStatus.trails.forEach(trailStatus => {
+                //         if (trailStatus.trailId === trail.id) {
+                //             if (trailStatus.status === 'completed') {
+                //                 trail._completed = true;
+                //             } else {
+                //                 trail._interested = true;
+                //             }
+                //         }
+                //     });
+                // });
+
+                this.currentTrails = this.trails;
                 this.filteredTrails = this.currentTrails.slice(0, 50);
                 for (let i = 1; i <= Math.ceil(this.currentTrails.length / 50); i++) {
                     this.pageArr.push(i);
@@ -94,8 +110,6 @@ export class TrailsListComponent implements OnInit, OnDestroy {
         this.filterType.valueChanges.pipe(
             takeUntil(this.unsubscribe),
             tap(filterType => {
-                console.log(filterType);
-                console.log(this.authService.authenticated);
                 switch (filterType) {
                     case 'rating':
                         this.filterOptions = this.ratingOptions;
@@ -119,12 +133,13 @@ export class TrailsListComponent implements OnInit, OnDestroy {
             takeUntil(this.unsubscribe),
             tap(filterOption => {
                 switch (this.filterType.value) {
-                    case 'rating':
+                    case 'rating': {
                         const tempTrails = _.orderBy(this.trails, 'stars', filterOption.value);
                         this.currentTrails = tempTrails;
                         this.filteredTrails = this.currentTrails.slice(0, 50);
                         this.activePage = 1;
                         break;
+                    }
                     case 'difficulty':
                         const dblack = [];
                         const black = [];
@@ -162,12 +177,40 @@ export class TrailsListComponent implements OnInit, OnDestroy {
                         this.filteredTrails = this.currentTrails.slice(0, 50);
                         this.activePage = 1;
                         break;
-                    case 'completion':
-                        console.log('sorting completion incomplete');
+                    case 'completion': {
+                        const tempTrails = _.orderBy(this.trails, trail => {
+                            const foundStatus = _.find(this.trailStatus.trails, trailStatus => {
+                                return trailStatus.trailId === trail.id;
+                            });
+
+                            if (foundStatus.status === 'completed') {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }, filterOption.value);
+                        this.currentTrails = tempTrails;
+                        this.filteredTrails = this.currentTrails.slice(0, 50);
+                        this.activePage = 1;
                         break;
-                    case 'interested':
-                        console.log('sorting interested incomplete');
+                    }
+                    case 'interested': {
+                        const tempTrails = _.orderBy(this.trails, trail => {
+                            const foundStatus = _.find(this.trailStatus.trails, trailStatus => {
+                                return trailStatus.trailId === trail.id;
+                            });
+
+                            if (foundStatus.status === 'interested') {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }, filterOption.value);
+                        this.currentTrails = tempTrails;
+                        this.filteredTrails = this.currentTrails.slice(0, 50);
+                        this.activePage = 1;
                         break;
+                    }
                 }
             })
         ).subscribe();

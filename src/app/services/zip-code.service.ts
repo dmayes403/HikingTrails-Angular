@@ -35,7 +35,6 @@ export class ZipCodeService {
             undefined
         ).pipe(
             map(data => {
-                console.log(data);
                 const USLocation = _.find(data.results[0].locations, {'adminArea1': 'US'});
                 return USLocation;
             })

@@ -40,12 +40,10 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
                 return this.trailsService.getTrailById(params['id']);
             }),
             switchMap((trail: Trail[]) => {
-                console.log(trail);
                 this.trail = trail[0];
                 return this.weatherService.getFiveDayForecast(this.trail.latitude, this.trail.longitude);
             }),
             tap((weather: Weather) => {
-                console.log(weather);
                 this.weather = weather;
             })
         ).subscribe();

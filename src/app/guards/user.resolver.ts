@@ -20,7 +20,6 @@ export class UserResolver implements Resolve<any> {
             })
         );
 
-        console.log(auth$);
         if (auth$) {
             return of(auth$);
         }

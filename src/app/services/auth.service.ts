@@ -15,7 +15,6 @@ export class AuthService {
     }
 
     get currentUser() {
-        console.log(this.afAuth.authState);
         return this.afAuth.auth.currentUser;
     }
 
@@ -29,7 +28,6 @@ export class AuthService {
         // });
 
         from(this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())).subscribe(result => {
-            console.log(result);
             this.authState = result;
         });
     }
