@@ -42,3 +42,5 @@ export class TrailsService {
         );
     }
 }
+
+// Figure out image saves
