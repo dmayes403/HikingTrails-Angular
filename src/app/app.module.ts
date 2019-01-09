@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { APIKeys } from '../api-keys';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './app.material';
@@ -45,7 +46,8 @@ const firebaseConfig = APIKeys.firebaseConfig;
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFirestoreModule,
         // AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        AngularFireStorageModule
     ],
     providers: [
         UserResolver

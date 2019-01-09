@@ -1,8 +1,11 @@
+// https://medium.com/codingthesmartway-com-blog/firebase-cloud-storage-with-angular-394566fd529
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import { MatDialog} from '@angular/material';
 import { Subject } from 'rxjs';
+// import { storage } from 'firebase/app';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
 import { WeatherService } from '../../services/weather.service';
 import { TrailsService } from '../../services/trails.service';
@@ -26,8 +29,12 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     weather: Weather;
     today = new Date();
 
+    ref: AngularFireStorageReference;
+    task: AngularFireUploadTask;
+
     constructor(
         private weatherService: WeatherService,
+        private afStorage: AngularFireStorage,
         private trailsService: TrailsService,
         private route: ActivatedRoute,
         public dialog: MatDialog,
@@ -112,8 +119,9 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         this.unsubscribe.complete();
     }
 
-    upload(img: any) {
-        console.log(img);
-        const storageRef = firebase.storage().ref();
+    upload(event) {
+        const id = Math.random().toString(36).substring(2);
+        this.ref = this.afStorage.ref(id);
+        this.task = this.ref.put(event.target.files[0]);
     }
 }
