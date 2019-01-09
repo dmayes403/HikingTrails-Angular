@@ -111,4 +111,9 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         this.unsubscribe.next();
         this.unsubscribe.complete();
     }
+
+    upload(img: any) {
+        console.log(img);
+        const storageRef = firebase.storage().ref();
+    }
 }

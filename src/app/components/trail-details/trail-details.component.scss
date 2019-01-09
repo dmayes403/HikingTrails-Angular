@@ -23,11 +23,11 @@
 }
 
 .main-img {
-    height: 350px;
+    height: 305px;
     width: 250px;
 
     img  {
-        height: 350px;
+        height: 305px;
         width: 250px;
         border-radius: 5px;
         border: 2px solid $primary-spectrum;
@@ -81,4 +81,8 @@
 
 mat-icon {
     cursor: pointer;
+}
+
+#upload {
+    width: 100%;
 }
