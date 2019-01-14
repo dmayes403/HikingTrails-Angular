@@ -119,7 +119,7 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
         this.unsubscribe.complete();
     }
 
-    upload(event) { // upload an image
+    upload(event) { // work on retrieving an image
         const id = Math.random().toString(36).substring(2);
         this.ref = this.afStorage.ref(id);
         this.task = this.ref.put(event.target.files[0]);
