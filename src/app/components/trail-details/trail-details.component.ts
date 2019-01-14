@@ -2,10 +2,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { switchMap, tap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog} from '@angular/material';
-import { Subject } from 'rxjs';
-// import { storage } from 'firebase/app';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { MatDialog } from '@angular/material';
+import { Subject, Observable, interval } from 'rxjs';
+import {
+    AngularFireStorage,
+    AngularFireStorageReference,
+    AngularFireUploadTask
+} from 'angularfire2/storage';
 
 import { WeatherService } from '../../services/weather.service';
 import { TrailsService } from '../../services/trails.service';
@@ -28,6 +31,9 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     trail: Trail;
     weather: Weather;
     today = new Date();
+    uploadProgress: Observable<number>;
+    uploadProgresss = 0;
+    uploading = false;
 
     ref: AngularFireStorageReference;
     task: AngularFireUploadTask;
@@ -41,6 +47,10 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
+        setInterval(() => {
+            this.uploadProgresss ++;
+        }, 500);
+
         this.route.params.pipe(
             takeUntil(this.unsubscribe),
             switchMap(params => {
@@ -122,6 +132,17 @@ export class TrailDetailsComponent implements OnInit, OnDestroy {
     upload(event) { // work on retrieving an image
         const id = Math.random().toString(36).substring(2);
         this.ref = this.afStorage.ref(id);
+        this.uploading = true;
         this.task = this.ref.put(event.target.files[0]);
+        this.uploadProgress = this.task.percentageChanges();
+        this.uploadProgress.subscribe(progress => {
+            console.log(progress);
+            if (progress === 100) {
+                this.uploading = false;
+            }
+        },
+        error => {
+            this.uploading = false;
+        });
     }
 }

@@ -5,7 +5,14 @@
                 <img src="{{trail?.imgMedium}}" alt="">
                 <div>
                     <input #file type="file" accept=".png,.jpg" (change)="upload($event)" style="display: none;">
-                    <button mat-raised-button color="accent" (click)="file.click()" id="upload">Upload Image</button>
+                    <button mat-raised-button color="accent" (click)="file.click()" id="upload">
+                        <span *ngIf="!uploading">Upload Image</span>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <mat-progress-bar fxFlex *ngIf="uploading" mode="determinate" 
+                                [value]="uploadProgress|async"></mat-progress-bar>
+                            <span *ngIf="uploading" style="margin-left: 8px;">{{(uploadProgress|async)/100 | percent}}</span>
+                        </div>
+                    </button>
                 </div>
             </div>
     
